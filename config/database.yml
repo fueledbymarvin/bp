@@ -1,0 +1,17 @@
+connection: &connection
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: vagrant
+
+development:
+  <<: *connection
+  database: bp-development
+
+test: &test
+  <<: *connection
+  database: bp-test
+
+test: &production
+  <<: *connection
+  database: bp-production
