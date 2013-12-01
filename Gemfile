@@ -37,6 +37,7 @@ gem 'slim-rails'
 gem 'paperclip'
 gem 'bourbon'
 gem 'angularjs-rails'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'better_errors'
