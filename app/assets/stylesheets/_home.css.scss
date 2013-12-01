@@ -1,0 +1,74 @@
+#bg-wrapper {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: -9001;
+	#reel {
+		position: absolute;
+		@include transform(translate(-50%, -50%));
+		left: 50%;
+		top: 50%;
+		min-width: 100%;
+		min-height: 100%;
+		width: auto;
+		height:auto;
+	}
+	#overlay {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: url('crissXcross.png') repeat center;
+		opacity: 0.7;
+	}
+	#logo {
+		position: absolute;
+		max-height: 50%;
+		max-width: 50%;
+		height: auto;
+		width: auto;
+		left: 50%;
+		top: 50%;
+		@include transform(translate(-50%, -50%));
+	}
+}
+
+#nav {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	height: 3em;
+	background: url('dark_mosaic.png') repeat center;
+	@include transition( height 0.3s ease-in-out );
+
+	overflow: hidden;
+	#arrow {
+		cursor: pointer;
+		display: block;
+		padding: 0.5em;
+		width: 1.2em;
+		position: relative;
+		left: 50%;
+		top: 1.5em;
+		@include transform( translate(-50%, -50%) );
+		@include transition( top 0.2s $ease-out-back );
+		&:hover {
+			top: 1.2em;
+		}
+		&.clicked {
+			top: 1.8em;
+			&:hover {
+				top: 2.1em;
+			}
+		}
+	}
+	#temp {
+		padding: 1.2em;
+		text-align: center;
+		font-size: 1.2em;
+	}
+}
