@@ -5,9 +5,9 @@
   #overlay
   img#logo src="assets/logo.png"
 
-#content ng-controller="PostCtrl"
+#content ng-controller="PostsCtrl"
   form ng-submit="addPost()"
     textarea data-provide="markdown" ng-model="newPost.content"
     input.btn type="submit" value="Create"
-  p {{newPost.content}}
-  p ng-repeat="post in posts" {{post.content}}
+  div ng-repeat="post in posts"
+    p bind-html-unsafe="post.content|markdown"

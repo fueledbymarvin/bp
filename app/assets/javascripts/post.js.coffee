@@ -1,20 +1,43 @@
-app = angular.module("Posts", ["ngResource"])
+postsApp = angular.module("postsApp", ["ngResource"])
 
-app.config(['$httpProvider', ($httpProvider) ->
+postsApp.config(['$httpProvider', ($httpProvider) ->
   $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest'
 ])
 
-app.factory "Post", ["$resource", ($resource) ->
+postsApp.factory "Post", ["$resource", ($resource) ->
   $resource("/posts/:id", { id: "@id" }, { update: {method: "PUT"} })
 ]
 
-@PostCtrl = ["$scope", "Post", ($scope, Post) ->
+postsApp.controller("PostsCtrl", ["$scope", "Post", ($scope, Post) ->
   $scope.posts = Post.query()
 
   $scope.addPost = ->
-    post = Post.save($scope.newPost)
-    $scope.posts.push(post)
-    $scope.newPost = {}
+    Post.save($scope.newPost, (resource) ->
+        $scope.posts.push(resource)
+        $scope.newPost = {}
+      ,
+      (response) ->
+        #failure
+    )
+])
 
-  converter = new Showdown.converter();
-]
+postsApp.directive('bindHtmlUnsafe', ($compile) ->
+  return ($scope, $element, $attrs) ->
+    compile = (newHTML) ->
+      newHTML = $compile(newHTML)($scope)
+      $element.html('').append(newHTML)
+    
+    htmlName = $attrs.bindHtmlUnsafe
+
+    $scope.$watch(htmlName, (newHTML) ->
+      if not newHTML
+        return
+      compile(newHTML)
+    )
+)
+
+postsApp.filter('markdown', ->
+  return (text) ->
+    converter = new Showdown.converter();
+    return converter.makeHtml(text)
+)

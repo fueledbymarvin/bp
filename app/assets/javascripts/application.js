@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require angular
+//= require angular-sanitize
 //= require angular-resource
 //= require bootstrap
 //= require bootstrap-markdown
