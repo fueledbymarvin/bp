@@ -1,22 +1,13 @@
 #bg-wrapper
-	video#reel preload="auto" autoplay="true" loop="loop" muted="muted" volume="0"
-		source src="assets/reel.webm" type="video/webm"
-		source src="assets/reel.mp4" type="video/mp4" Video not supported
-	#overlay
-	img#logo src="assets/logo.png"
+  video#reel preload="auto" autoplay="true" muted="muted" volume="0" loop="loop"
+    source src="assets/reel.webm" type="video/webm"
+    source src="assets/reel.mp4" type="video/mp4" Video not supported
+  #overlay
+  img#logo src="assets/logo.png"
 
-#content
-	#nav
-		img#arrow src="assets/up.png"
-		#temp
-			p The Bulldog Productions site is currently under construction.
-			p
-				'In the meantime, check out our on our
-				a href="http://www.youtube.com/user/yalebpfilms" YouTube channel 
-				'or
-				a href="https://www.facebook.com/pages/Bulldog-Productions/102834406423998" Facebook page
-				'.
-			p
-				'If you are interested in contacting us, then please email
-				a href="mailto:info@bulldog-productions.com" info@bulldog-productions.com
-				'.
+#content ng-controller="PostCtrl"
+  form ng-submit="addPost()"
+    textarea data-provide="markdown" ng-model="newPost.content"
+    input.btn type="submit" value="Create"
+  p {{newPost.content}}
+  p ng-repeat="post in posts" {{post.content}}

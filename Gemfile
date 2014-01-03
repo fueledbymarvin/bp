@@ -36,24 +36,27 @@ gem 'passenger'
 gem 'slim-rails'
 gem 'paperclip'
 gem 'bourbon'
+gem 'bootstrap-sass'
 gem 'angularjs-rails'
 gem 'newrelic_rpm'
 
 group :development, :test do
-  gem 'better_errors'
+  gem 'better_errors', '~> 1.1'
   gem 'binding_of_caller'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'headless'
   gem 'database_cleaner'
-  gem 'spork'
+  gem 'spork-rails'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'guard-bundler'
   gem 'guard-passenger'
+  gem 'guard-livereload', require: false
+  gem 'rack-livereload'
 end
 
 

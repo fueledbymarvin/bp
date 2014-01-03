@@ -2,7 +2,7 @@ connection: &connection
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: vagrant
+  username: postgres
 
 development:
   <<: *connection
