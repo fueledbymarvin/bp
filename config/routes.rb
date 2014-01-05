@@ -1,6 +1,6 @@
 Bp::Application.routes.draw do
-  namespace :api, defaults: { format: :json } do
-    resources :posts, only: [:index, :create, :update, :destroy]
+  scope "/api", defaults: { format: :json } do
+    resources :posts, only: [:index, :show, :create, :update, :destroy]
   end
 
   root 'static_pages#home'

@@ -1,3 +1,5 @@
+postsDirectives = angular.module('posts.directives', [])
+
 postsDirectives.directive('bindHtmlUnsafe', ($compile) ->
   return ($scope, $element, $attrs) ->
     compile = (newHTML) ->
@@ -15,7 +17,7 @@ postsDirectives.directive('bindHtmlUnsafe', ($compile) ->
 
 postsDirectives.directive('loading', ['$rootScope', ($rootScope) ->
   return {
-    link: function(scope, element, attrs) {
+    link: (scope, element, attrs) ->
       element.addClass('hide')
 
       $rootScope.$on('$routeChangeStart', ->
@@ -25,6 +27,5 @@ postsDirectives.directive('loading', ['$rootScope', ($rootScope) ->
       $rootScope.$on('$routeChangeStop', ->
         element.addClass('hide')
       )
-    }
   }
 ])

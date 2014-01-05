@@ -16,8 +16,8 @@
 //= require angular
 //= require angular-sanitize
 //= require angular-resource
+//= require angular-route
 //= require bootstrap
 //= require bootstrap-markdown
 //= require showdown
-//= require posts/postsModule
 //= require_tree .

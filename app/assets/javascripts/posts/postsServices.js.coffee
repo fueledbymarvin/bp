@@ -1,12 +1,14 @@
+postsServices = angular.module('posts.services', ['ngResource'])
+
 postsServices.factory "Post", ["$resource", ($resource) ->
-  $resource("/posts/:id", { id: "@id" }, { update: { method: "PUT" } })
+  $resource("/api/posts/:id", { id: "@id" }, { update: { method: "PUT" } })
 ]
 
-postsServices.factory "PostsListLoader", ["Post", "$q", (Recipe, $q) ->
+postsServices.factory "PostsListLoader", ["Post", "$q", (Post, $q) ->
   return ->
     delay = $q.defer()
     Post.query(
-      (recipes) ->
+      (posts) ->
         delay.resolve(posts)
       , ->
         delay.reject("Unable to fetch Posts")
@@ -14,15 +16,15 @@ postsServices.factory "PostsListLoader", ["Post", "$q", (Recipe, $q) ->
     return delay.promise
 ]
 
-postsServices.factory "PostsLoader", ["Post", "$route", "$q", (Recipe, $route, $q) ->
+postsServices.factory "PostsLoader", ["Post", "$route", "$q", (Post, $route, $q) ->
   return ->
     delay = $q.defer()
     Post.get(
-      { id: $route.current.params.recipeId }
-      , (recipe) ->
+      { id: $route.current.params.postId }
+      , (post) ->
         delay.resolve(post)
       , ->
-        delay.reject("Unable to fetch post " + $route.current.params.recipeId)
+        delay.reject("Unable to fetch post " + $route.current.params.postId)
     )
     return delay.promise
 ]
