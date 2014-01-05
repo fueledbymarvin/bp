@@ -1,0 +1,15 @@
+h2 Edit Post
+form name="postForm" ng-submit="save()"
+  .form-group
+    label for="inputTitle" Title
+    input type="text" ng-model="post.title" required=""
+  .form-group
+    label for="inputTitle" Author
+    input type="text" ng-model="post.author" required=""
+  .form-group
+    label for="inputContent" Content
+    textarea data-provide="markdown" ng-model="post.content" required=""
+    input.btn type="submit" value="Create"
+  .form-group
+    button.btn.btn-primary ng-disabled="postForm.$invalid" Save
+    button.btn.btn-danger ng-click="delete()" ng-show="!post.id" Delete

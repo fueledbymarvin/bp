@@ -1,4 +1,4 @@
-postsApp.directive('bindHtmlUnsafe', ($compile) ->
+postsDirectives.directive('bindHtmlUnsafe', ($compile) ->
   return ($scope, $element, $attrs) ->
     compile = (newHTML) ->
       newHTML = $compile(newHTML)($scope)
@@ -13,9 +13,18 @@ postsApp.directive('bindHtmlUnsafe', ($compile) ->
     )
 )
 
-postsApp.directive('addPost', () ->
+postsDirectives.directive('loading', ['$rootScope', ($rootScope) ->
   return {
-    restrict: "E",
-    templateUrl: "_addPost.html.slim"
+    link: function(scope, element, attrs) {
+      element.addClass('hide')
+
+      $rootScope.$on('$routeChangeStart', ->
+        element.removeClass('hide')
+      )
+
+      $rootScope.$on('$routeChangeStop', ->
+        element.addClass('hide')
+      )
+    }
   }
-)
+])

@@ -1,0 +1,5 @@
+h2 {{post.title}} | {{post.author}}
+.content bind-html-unsafe="post.content|markdown"
+
+form.form-horizontal ng-submit="edit()"
+  button.btn.btn-primary Edit
