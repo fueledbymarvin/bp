@@ -19,4 +19,5 @@
 //= require bootstrap
 //= require bootstrap-markdown
 //= require showdown
+//= require posts/postsModule
 //= require_tree .

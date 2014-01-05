@@ -1,5 +1,7 @@
 Bp::Application.routes.draw do
-  resources :posts
+  namespace :api, defaults: { format: :json } do
+    resources :posts, only: [:index, :create, :update, :destroy]
+  end
 
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,6 @@
+#content ng-controller="PostsCtrl"
+  form ng-submit="addPost()"
+    textarea data-provide="markdown" ng-model="newPost.content"
+    input.btn type="submit" value="Create"
+  div ng-repeat="post in posts"
+    p bind-html-unsafe="post.content|markdown"
