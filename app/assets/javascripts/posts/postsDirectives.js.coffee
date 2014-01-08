@@ -1,6 +1,6 @@
 postsDirectives = angular.module('posts.directives', [])
 
-postsDirectives.directive('bindHtmlUnsafe', ($compile) ->
+postsDirectives.directive('bindHtmlUnsafe', ['$compile', ($compile) ->
   return ($scope, $element, $attrs) ->
     compile = (newHTML) ->
       newHTML = $compile(newHTML)($scope)
@@ -13,7 +13,7 @@ postsDirectives.directive('bindHtmlUnsafe', ($compile) ->
         return
       compile(newHTML)
     )
-)
+])
 
 postsDirectives.directive('loading', ['$rootScope', ($rootScope) ->
   return {
@@ -29,3 +29,10 @@ postsDirectives.directive('loading', ['$rootScope', ($rootScope) ->
       )
   }
 ])
+
+postsDirectives.directive('markdownEditor', ->
+  return {
+    link: (scope, element, attrs) ->
+      element.markdown({})
+  }
+)

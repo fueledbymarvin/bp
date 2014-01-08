@@ -1,30 +1,33 @@
 postsApp = angular.module("postsApp", ['ngRoute', 'posts.services', 'posts.directives'])
 
 postsApp.config(['$routeProvider', ($routeProvider) ->
-  $routeProvider.when('/',
-      controller: 'PostsListCtrl'
-      resolve:
-        posts: (PostsListLoader) ->
-          return PostsListLoader()
-      templateUrl: '/assets/postsList.html'
-    ).when('/edit/:postId',
-      controller: 'PostsEditCtrl'
-      resolve:
-        post: (PostsLoader) ->
-          return PostsLoader()
-      templateUrl: '/assets/postsForm.html'
-    ).when('/view/:postId',
-      controller: 'PostsViewCtrl'
-      resolve:
-        post: (PostsLoader) ->
-          return PostsLoader()
-      templateUrl: '/assets/postsView.html'
-    ).when('/new',
-      controller: 'PostsNewCtrl'
-      templateUrl: '/assets/postsForm.html'
-    ).otherwise(
-      redirectTo: '/'
-    )
+  $routeProvider.when('/'
+    templateUrl: '/assets/home.html'
+  )
+  # $routeProvider.when('/',
+  #     controller: 'PostsListCtrl'
+  #     resolve:
+  #       posts: (PostsListLoader) ->
+  #         return PostsListLoader()
+  #     templateUrl: '/assets/postsList.html'
+  #   ).when('/edit/:postId',
+  #     controller: 'PostsEditCtrl'
+  #     resolve:
+  #       post: (PostsLoader) ->
+  #         return PostsLoader()
+  #     templateUrl: '/assets/postsForm.html'
+  #   ).when('/view/:postId',
+  #     controller: 'PostsViewCtrl'
+  #     resolve:
+  #       post: (PostsLoader) ->
+  #         return PostsLoader()
+  #     templateUrl: '/assets/postsView.html'
+  #   ).when('/new',
+  #     controller: 'PostsNewCtrl'
+  #     templateUrl: '/assets/postsForm.html'
+  #   ).otherwise(
+  #     redirectTo: '/'
+  #   )
 ])
 
 postsApp.config(['$httpProvider', ($httpProvider) ->
