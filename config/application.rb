@@ -25,7 +25,7 @@ module Bp
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.assets.paths << ["#{Rails.root}/app/assets/templates/posts",
+    config.assets.paths += ["#{Rails.root}/app/assets/templates/posts",
         "#{Rails.root}/app/assets/templates"]
   end
 end

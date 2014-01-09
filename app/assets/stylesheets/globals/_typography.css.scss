@@ -1,42 +1,70 @@
 @font-face {
-    font-family: 'champagnelimousines';
-    src: url('champagne__limousines-webfont.eot');
-    src: url('champagne__limousines-webfont.eot?#iefix') format('embedded-opentype'),
-         url('champagne__limousines-webfont.woff') format('woff'),
-         url('champagne__limousines-webfont.ttf') format('truetype'),
-         url('champagne__limousines-webfont.svg#champagne__limousinesregular') format('svg');
+    font-family: 'Novecento';
+    src: url('Novecento.eot');
+    src: url('Novecento.eot?#iefix') format('embedded-opentype'),
+         url('Novecento.woff') format('woff'),
+         url('Novecento.ttf') format('truetype'),
+         url('Novecento.svg#Novecento') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'novecento_sans_widedemibold';
-    src: url('Novecentosanswide-DemiBold-webfont.eot');
-    src: url('Novecentosanswide-DemiBold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('Novecentosanswide-DemiBold-webfont.woff') format('woff'),
-         url('Novecentosanswide-DemiBold-webfont.ttf') format('truetype'),
-         url('Novecentosanswide-DemiBold-webfont.svg#novecento_sans_widedemibold') format('svg');
+    font-family: 'Charis';
+    src: url('CharisSIL.eot');
+    src: url('CharisSIL.eot?#iefix') format('embedded-opentype'),
+         url('CharisSIL.woff') format('woff'),
+         url('CharisSIL.ttf') format('truetype'),
+         url('CharisSIL.svg#CharisSIL') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'novecento_sans_widenormal';
-    src: url('Novecentosanswide-Normal-webfont.eot');
-    src: url('Novecentosanswide-Normal-webfont.eot?#iefix') format('embedded-opentype'),
-         url('Novecentosanswide-Normal-webfont.woff') format('woff'),
-         url('Novecentosanswide-Normal-webfont.ttf') format('truetype'),
-         url('Novecentosanswide-Normal-webfont.svg#novecento_sans_widenormal') format('svg');
-    font-weight: normal;
+    font-family: 'Charis';
+    src: url('CharisSIL-Bold.eot');
+    src: url('CharisSIL-Bold.eot?#iefix') format('embedded-opentype'),
+         url('CharisSIL-Bold.woff') format('woff'),
+         url('CharisSIL-Bold.ttf') format('truetype'),
+         url('CharisSIL-Bold.svg#CharisSIL-Bold') format('svg');
+    font-weight: bold;
     font-style: normal;
+}
+
+@font-face {
+    font-family: 'Charis';
+    src: url('CharisSIL-Italic.eot');
+    src: url('CharisSIL-Italic.eot?#iefix') format('embedded-opentype'),
+         url('CharisSIL-Italic.woff') format('woff'),
+         url('CharisSIL-Italic.ttf') format('truetype'),
+         url('CharisSIL-Italic.svg#CharisSIL-Italic') format('svg');
+    font-weight: normal;
+    font-style: italic, oblique;
+}
+
+@font-face {
+    font-family: 'Charis';
+    src: url('CharisSIL-BoldItalic.eot');
+    src: url('CharisSIL-BoldItalic.eot?#iefix') format('embedded-opentype'),
+         url('CharisSIL-BoldItalic.woff') format('woff'),
+         url('CharisSIL-BoldItalic.ttf') format('truetype'),
+         url('CharisSIL-BoldItalic.svg#CharisSIL-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic, oblique;
 }
 
 body {
-	font-family: 'champagnelimousines' !important;
+    font-size: 16px;
+    font-family: 'Charis';
+    color: #2b2b2b;
+}
+
+h1 {
+    font-family: 'Novecento';
 }
 
 a {
-	color: #CBE86B;
+	color: #542437;
 	text-decoration: none;
 	&:hover {
 		text-decoration: underline;

@@ -1,10 +1,27 @@
+#bg-wrapper
+  video#reel preload="auto" autoplay="true" muted="muted" volume="0" loop="loop"
+    source src="assets/reel.webm" type="video/webm"
+    source src="assets/reel.mp4" type="video/mp4" Video not supported
+  #overlay
+
 .container
-  #bg-wrapper
-    video#reel preload="auto" autoplay="true" muted="muted" volume="0" loop="loop"
-      source src="assets/reel.webm" type="video/webm"
-      source src="assets/reel.mp4" type="video/mp4" Video not supported
-    #overlay
-    img#logo src="assets/logo.png"
+  #nav.row
+    .col-sm-3
+      img#logo src="assets/shield.png"
+    .col-sm-9
+      ul#social.pull-right
+        li
+          img src="assets/fb.png"
+        li
+          img src="assets/yt.png"
+        li
+          img src="assets/email.png"
+      ul#menu.pull-right
+        li FILMS
+        li CREATORS
+        li ABOUT
+        li CONTACT
+        li BLOG
 
 / #loading loading="" Wait the fuck up.
 

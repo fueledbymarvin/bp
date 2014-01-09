@@ -23,16 +23,56 @@
 		top: 0;
 		left: 0;
 		background: url('simple_dashed.png') repeat center;
-		opacity: 0.5;
+		opacity: 0.7;
 	}
+}
+
+#nav {
+	font-family: 'novecento_sans_widenormal';
+	margin-top: 3em;
+
 	#logo {
-		position: absolute;
-		max-height: 50%;
-		max-width: 50%;
-		height: auto;
-		width: auto;
-		left: 50%;
-		top: 50%;
-		@include transform(translate(-50%, -50%));
+		width: 8em;
+		height: 8em;
+	}
+
+	li {
+		display: inline-block;
+	}
+
+	#social {
+		margin-top: 3em;
+		margin-bottom: 1em;
+		img {
+			width: 2em;
+			height: 2em;
+		}
+		li {
+			padding: 0 0 0 0.4em;
+		}
+	}
+
+	#menu {
+		clear: both;
+		letter-spacing: 0.2em;
+		font-size: 12px;
+		li {
+			padding: 0 0 0 2em;
+		}
+	}
+}
+
+#home-content {
+	margin-top: 5em;
+	h1 {
+		font-family: 'novecento_sans_widedemibold';
+		font-size: 56px;
+	}
+	h2 {
+		margin: 0.1em 0 1em;
+		font-family: 'novecento_sans_widenormal';
+		font-size: 48px;
+	}
+	p {
 	}
 }
