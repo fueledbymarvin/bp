@@ -1,1 +1,14 @@
-$bgdark: #212221;
+$bg-dark: #2b2b2b;
+$bg-light: #ffffff;
+
+@mixin center-vert {
+  position: relative;
+  top: 50%;
+  @include transform( translate(0, -50%) );
+}
+
+@mixin center-horz {
+  position: relative;
+  left: 50%;
+  @include transform( translate(-50%, 0) );
+}

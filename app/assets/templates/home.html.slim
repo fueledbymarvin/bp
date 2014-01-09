@@ -3,25 +3,35 @@
     source src="assets/reel.webm" type="video/webm"
     source src="assets/reel.mp4" type="video/mp4" Video not supported
   #overlay
+  #home-content.container
+    .row
+      .col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3.col-xs-8.col-xs-offset-2
+        img#splash src="assets/splash.png"
+    .row
+      #cta.btn-line view our work
 
 .container
-  #nav.row
-    .col-sm-3
+  #home-nav.row
+    .col-xs-3.col-xs-offset-1.col-sm-offset-0
       img#logo src="assets/shield.png"
-    .col-sm-9
-      ul#social.pull-right
+    #nav-mobile.col-xs-7.visible-xs
+      p.pull-right hi
+    #nav-items.col-sm-9.col-xs-12
+      ul#social
         li
           img src="assets/fb.png"
+        li
+          img src="assets/vimeo.png"
         li
           img src="assets/yt.png"
         li
           img src="assets/email.png"
-      ul#menu.pull-right
-        li FILMS
-        li CREATORS
-        li ABOUT
-        li CONTACT
-        li BLOG
+      ul#menu
+        li films
+        li creators
+        li about
+        li contact
+        li blog
 
 / #loading loading="" Wait the fuck up.
 
