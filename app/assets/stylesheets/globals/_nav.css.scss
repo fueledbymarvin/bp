@@ -6,8 +6,32 @@
     margin-top: 3em;
   }
 
-  #logo {
+  #logo, #logo-hover img {
     height: 5em;
+  }
+
+  #logo-hover {
+    height: 1em;
+    width: 100%;
+    position: absolute;
+    top: -1em;
+    overflow: hidden;
+    img {
+      position: relative;
+      top: 1em;
+    }
+    &.transition {
+      @include transition( all 0.6s ease-in-out );
+      img {
+        @include transition( all 0.6s ease-in-out );
+      }
+    }
+    &.reveal {
+      top: 5em;
+      img {
+        top: -5em;
+      }
+    }
   }
 
   li {
@@ -49,7 +73,7 @@
 
   #social {
     float: right;
-    margin-top: 1.2em;
+    margin-top: 1.4em;
     margin-bottom: 0.5em;
     @media only screen and (max-width: $screen-sm-min) {
       display: inline-block;

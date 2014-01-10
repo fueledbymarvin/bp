@@ -144,3 +144,19 @@ postsDirectives.directive('btnLine', ->
           opacity: 0
   }
 )
+
+postsDirectives.directive('logo', ->
+  return {
+    restrict: 'E'
+    scope:
+      inverted: "@"
+    templateUrl: 'assets/logo.html'
+    link: (scope, element, attrs) ->
+      element.hover ->
+        element.find('#logo-hover').addClass('transition')
+        element.find('#logo-hover').addClass('reveal')
+      , ->
+        element.find('#logo-hover').removeClass('transition')
+        element.find('#logo-hover').removeClass('reveal')
+  }
+)
