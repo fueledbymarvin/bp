@@ -1,0 +1,40 @@
+body {
+  background: url('simple_dashed-i.png') repeat center;
+}
+
+#base {
+  #nav {
+    @media only screen and (min-width: $screen-sm-min) {
+      margin-top: 2em;
+    }
+  }
+
+  $header-height: 14em;
+
+  #header-bar {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    background-color: $bg-dark;
+    height: $header-height;
+    margin-top: 1.5em;
+    @media only screen and (max-width: $screen-sm-min) {
+      margin-top: 1em;
+      @include transition( all 0.3s ease-in-out );
+    }
+    &.reveal {
+      margin-top: 0;
+    }
+  }
+
+  #content {
+    margin-top: $header-height + 4.5;
+    @media only screen and (max-width: $screen-sm-min) {
+      margin-top: $header-height + 2.5;
+      @include transition( all 0.3s ease-in-out );
+    }
+    &.reveal {
+      margin-top: $header-height + 1.5;
+    }
+  }
+}

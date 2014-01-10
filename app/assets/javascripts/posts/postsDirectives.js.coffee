@@ -68,7 +68,10 @@ postsDirectives.directive('navBar', ->
         navHeight = $element.find('#nav-wrapper').height()
         $element.find('#nav-wrapper').css({ height: 0 })
         $element.find('#nav-wrapper').css({ height: navHeight + "px" })
-        unless $scope.inverted
+        if $scope.inverted
+          $('#base #header-bar').addClass('reveal')
+          $('#base #content').addClass('reveal')
+        else
           $('#bg-wrapper').css({ minHeight: navHeight + 560 + "px" })
           bgHeight = $(window).height()
           if bgHeight < 560
@@ -79,7 +82,10 @@ postsDirectives.directive('navBar', ->
             $('#home-content').css({ marginTop: navHeight + "px" })
       $scope.menuClose = ->
         $element.find('#nav-wrapper').css({ height: 0 })
-        unless $scope.inverted
+        if $scope.inverted
+          $('#base #header-bar').removeClass('reveal')
+          $('#base #content').removeClass('reveal')
+        else
           $('#home-content').css({ marginTop: 0 })
           $('#bg-wrapper').css({ minHeight: "560px" })
     link: (scope, element, attrs) ->
@@ -90,7 +96,7 @@ postsDirectives.directive('navBar', ->
           scope.menuClose()
 
       $(window).resize ->
-        if not scope.inverted and $(window).width() >= 768 and element.find('#nav-wrapper').height() > 0
+        if $(window).width() >= 768 and element.find('#nav-wrapper').height() > 0
           scope.menuClose()
   }
 )

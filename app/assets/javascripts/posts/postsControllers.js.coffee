@@ -8,7 +8,7 @@ postsApp.config(['$routeProvider', ($routeProvider) ->
     resolve:
       posts: (PostsListLoader) ->
         return PostsListLoader()
-    templateUrl: '/assets/postsList.html'
+    templateUrl: '/assets/films.html'
   )
   # $routeProvider.when('/',
   #     controller: 'PostsListCtrl'
