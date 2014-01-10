@@ -1,0 +1,121 @@
+#nav {
+  font-family: 'Novecento';
+  color: $bg-light;
+  margin-top: 2em;
+  @media only screen and (min-width: $screen-sm-min) {
+    margin-top: 3em;
+  }
+
+  #logo {
+    height: 5em;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  #nav-items {
+    @media only screen and (max-width: $screen-sm-min) {
+      background: $bg-dark;
+      margin-top: 1em;
+      padding: 0.8em 0 0.6em;
+      border-top: 0.2em solid darken($bg-dark, 3%);
+      border-bottom: 0.2em solid darken($bg-dark, 3%);
+    }
+    &.invert {
+      @media only screen and (max-width: $screen-sm-min) {
+        background: $bg-light;
+        border-color: darken($bg-light, 18%);
+      }
+    }
+  }
+
+  #nav-wrapper {
+    @media only screen and (max-width: $screen-sm-min) {
+      height: 0;
+      overflow: hidden;
+      @include transition( all 0.3s ease-in-out );
+      clear: both;
+    }
+  }
+
+  #nav-mobile {
+    margin-top: 2em;
+    img {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+
+  #social {
+    float: right;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+    @media only screen and (max-width: $screen-sm-min) {
+      display: inline-block;
+      float: none;
+      margin: 0;
+      padding: 0.3em;
+      @include center-horz;
+    }
+    li {
+      padding: 0 0 0 0.3em;
+    }
+  }
+
+  #menu {
+    float: right;
+    clear: both;
+    @media only screen and (max-width: $screen-sm-min) {
+      display: block;
+      float: none;
+      margin: 0;
+      @include center-horz;
+    }
+
+    letter-spacing: 0.2em;
+    font-size: 14px;
+    li {
+      @media only screen and (max-width: $screen-sm-min) {
+        padding: 0.5em;
+        display: block;
+        text-align: center;
+      }
+
+      padding: 0 0 0 1em;
+    }
+  }
+
+  nav-text {
+    a {
+      color: $bg-light;
+      text-decoration: none;
+    }
+    .invert {
+      color: $bg-dark;
+      .line {
+        border-color: $bg-dark;
+      }
+    }
+    .line {
+      border-bottom: 0.1em solid $bg-light;
+      position: relative;
+      width: 0;
+      margin-left: -0.1em;
+      @include transition( all 0.4s $ease-out-back );
+      &.reveal {
+        width: 100%;
+      }
+    }
+    .top {
+      top: -1.2em;
+    }
+    .bottom {
+      top: 0.2em;
+      left: 100%;
+      &.reveal {
+        left: 0;
+      }
+    }
+  }
+}

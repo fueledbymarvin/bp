@@ -1,0 +1,31 @@
+#nav.row
+  .col-xs-3.col-xs-offset-1.col-sm-offset-0
+    a ng-href="/#/"
+      span ng-if="inverted"
+        img#logo src="assets/shield-i-small.png"
+      span ng-if="!inverted"
+        img#logo src="assets/shield-small.png"
+  #nav-mobile.col-xs-7.visible-xs
+    nav-btn.pull-right item="menu" inverted="{{inverted}}"
+  #nav-wrapper
+    #nav-items.col-sm-9.col-xs-12 ng-class="{invert: inverted}"
+      ul#social
+        li
+          nav-btn item="fb" inverted="{{inverted}}" link="https://www.facebook.com/pages/Bulldog-Productions/102834406423998"
+        li
+          nav-btn item="vimeo" inverted="{{inverted}}" link="http://vimeo.com/bulldogproductionsyale"
+        li
+          nav-btn item="yt" inverted="{{inverted}}" link="http://www.youtube.com/user/yalebpfilms"
+        li
+          nav-btn item="email" inverted="{{inverted}}" link="mailto:info@bulldog-productions.com"
+      ul#menu
+        li
+          nav-text inverted="{{inverted}}" link="/#/films" films
+        li
+          nav-text inverted="{{inverted}}" link="/#/creators" creators
+        li
+          nav-text inverted="{{inverted}}" link="/#/about" about
+        li
+          nav-text inverted="{{inverted}}" link="/#/contact" contact
+        li
+          nav-text inverted="{{inverted}}" link="/#/blog" blog

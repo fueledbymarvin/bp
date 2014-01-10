@@ -1,8 +1,60 @@
-.btn-line {
+btn-line {
   color: $bg-light;
   font-family: 'Novecento';
-  padding: 0.7em 1.4em 0.8em;
-  border: 0.15em solid $bg-light;
-  border-radius: 0.2em;
   display: inline-block;
+  @include transition( all 0.3s );
+  .wrapper {
+    padding: 0.7em 1.4em 0.8em;
+    border: 0.15em solid $bg-light;
+    border-radius: 0.2em;
+  }
+  .expander {
+    @include transition( all 0.3s );
+  }
+  a, a:hover {
+    color: $bg-light;
+    text-decoration: none;
+  }
+  &.reveal a {
+    color: $bg-dark;
+  }
+}
+
+nav-btn {
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  .nav-d-hover, .nav-d-normal {
+    width: 1.5em;
+    height: 1.5em;
+    overflow: hidden;
+    @include transition( all 0.2s ease-in-out );
+    img {
+      width: 1.5em;
+      height: 1.5em;
+      @include transition( all 0.2s ease-in-out );
+    }
+  }
+  .nav-d-hover {
+    position: absolute;
+    margin-top: -1.5em;
+    margin-left: 1.5em;
+    img {
+      position: relative;
+      left: -1.5em;
+    }
+  }
+  .nav-d-normal {
+    position: relative;
+  }
+  .nav-d-hover.reveal {
+    margin-left: 0;
+    img {
+      left: 0;
+    }
+  }
+  .nav-d-normal.reveal {
+    width: 0;
+    left: 0em;
+  }
 }

@@ -3,6 +3,12 @@ postsApp = angular.module("postsApp", ['ngRoute', 'posts.services', 'posts.direc
 postsApp.config(['$routeProvider', ($routeProvider) ->
   $routeProvider.when('/'
     templateUrl: '/assets/home.html'
+  ).when('/films',
+    controller: 'PostsListCtrl'
+    resolve:
+      posts: (PostsListLoader) ->
+        return PostsListLoader()
+    templateUrl: '/assets/postsList.html'
   )
   # $routeProvider.when('/',
   #     controller: 'PostsListCtrl'
