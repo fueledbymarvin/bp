@@ -1,5 +1,7 @@
 body {
   background: url('simple_dashed-i.png') repeat center;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 #base {
@@ -9,13 +11,13 @@ body {
     }
   }
 
-  $header-height: 14em;
+  $header-height: 11em;
 
-  #header-bar {
+  .header-bar {
     position: absolute;
     width: 100%;
     left: 0;
-    background-color: $bg-dark;
+    background-color: #77CCA4;
     height: $header-height;
     margin-top: 1.5em;
     @media only screen and (max-width: $screen-sm-min) {
@@ -25,9 +27,59 @@ body {
     &.reveal {
       margin-top: 0;
     }
+    color: $bg-light;
+    font-family: 'Novecento';
+    .single-title {
+      margin-top: (($header-height - 3) / 6);
+      h2 {
+        color: $bg-light;
+        font-size: 3em;
+        letter-spacing: 0.1em;
+      }
+    }
+    .post-title {
+      margin-top: 3.5em;
+      @media only screen and (max-width: $screen-sm-min) {
+        margin-top: 2.5em;
+      }
+      h2 {
+        font-size: 2em;
+        display: inline-block;
+        letter-spacing: 0.1em;
+        @media only screen and (max-width: $screen-sm-min) {
+          display: block;
+        }
+      }
+      h3 {
+        font-family: 'Charis';
+        &.author {
+          display: inline-block;
+          font-size: 1.5em;
+          font-style: italic;
+          @media only screen and (max-width: $screen-sm-min) {
+            margin: 0.2em 0;
+          }
+        }
+        &.splitter {
+          display: inline-block;
+          @media only screen and (max-width: $screen-sm-min) {
+            display: none;
+          }
+          font-size: 1.5em;
+          font-style: italic;
+          margin: 0 0.3em;
+        }
+        &.date {
+          display: block;
+          font-size: 1em;
+          font-style: normal;
+          margin-top: 0.8em;
+        }
+      }
+    }
   }
 
-  #content {
+  .content {
     margin-top: $header-height + 4.5;
     @media only screen and (max-width: $screen-sm-min) {
       margin-top: $header-height + 2.5;
@@ -36,5 +88,20 @@ body {
     &.reveal {
       margin-top: $header-height + 1.5;
     }
+    padding-bottom: 2em;
+  }
+
+  form {
+    .form-group {
+      margin-bottom: 1.5em;
+    }
+    label {
+      margin-bottom: 0.5em;
+      font-family: 'Novecento';
+    }
+  }
+
+  .btn {
+    font-family: 'Novecento';
   }
 }

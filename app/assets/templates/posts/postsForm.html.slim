@@ -1,14 +1,41 @@
-h2 Edit Post
-form role="form" name="postForm" ng-submit="save()"
-  .form-group
-    label for="inputTitle" Title
-    input.form-control type="text" ng-model="post.title" required=""
-  .form-group
-    label for="inputTitle" Author
-    input.form-control type="text" ng-model="post.author" required=""
-  .form-group
-    label for="inputContent" Content
-    textarea.form-control markdown-editor="" data-provide="markdown" ng-model="post.content" required=""
-  .form-group
-    button.btn.btn-primary ng-disabled="postForm.$invalid" Save
-    button.btn.btn-danger ng-click="delete()" ng-show="post.id" Delete
+#base.container
+  nav-bar inverted="true"
+  .header-bar
+    .container
+      span ng-if="post.id"
+        h2 edit film
+      span ng-if="!post.id"
+        h2 new film
+  .content
+    form role="form" name="postForm" ng-submit="save()"
+      .form-group
+        label for="inputTitle" Title
+        input.form-control type="text" ng-model="post.title" required=""
+      .form-group
+        label for="inputTitle" Director
+        input.form-control type="text" ng-model="post.author" required=""
+      .form-group
+        label for="inputTitle" Image Url
+        input.form-control type="text" ng-model="post.image" required=""
+      .form-group
+        label for="inputTitle" Vimeo Url
+        input.form-control type="text" ng-model="post.video" required=""
+      .form-group
+        label for="inputContent" Notes
+        textarea.form-control markdown-editor="" data-provide="markdown" ng-model="post.content" required=""
+      .form-group
+        label Preview
+        .header-bar
+          .container
+            .post-title
+              h2 {{post.title}}
+              h3.splitter
+                | //
+              h3.author {{post.author}}
+              h3.date {{date}}
+        .content
+          span ng-if="post.content"
+            .post-content bind-html-unsafe="post.content|markdown"
+      .form-group
+        button.btn.btn-primary ng-disabled="postForm.$invalid" Save
+        button.btn.btn-danger ng-click="delete()" ng-show="post.id" Delete

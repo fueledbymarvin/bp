@@ -9,31 +9,24 @@ postsApp.config(['$routeProvider', ($routeProvider) ->
       posts: (PostsListLoader) ->
         return PostsListLoader()
     templateUrl: '/assets/films.html'
-  )
-  # $routeProvider.when('/',
-  #     controller: 'PostsListCtrl'
-  #     resolve:
-  #       posts: (PostsListLoader) ->
-  #         return PostsListLoader()
-  #     templateUrl: '/assets/postsList.html'
-  #   ).when('/edit/:postId',
-  #     controller: 'PostsEditCtrl'
-  #     resolve:
-  #       post: (PostsLoader) ->
-  #         return PostsLoader()
-  #     templateUrl: '/assets/postsForm.html'
-  #   ).when('/view/:postId',
-  #     controller: 'PostsViewCtrl'
-  #     resolve:
-  #       post: (PostsLoader) ->
-  #         return PostsLoader()
-  #     templateUrl: '/assets/postsView.html'
-  #   ).when('/new',
-  #     controller: 'PostsNewCtrl'
-  #     templateUrl: '/assets/postsForm.html'
-  #   ).otherwise(
-  #     redirectTo: '/'
-  #   )
+  ).when('/edit/:postId',
+      controller: 'PostsEditCtrl'
+      resolve:
+        post: (PostsLoader) ->
+          return PostsLoader()
+      templateUrl: '/assets/postsForm.html'
+    ).when('/view/:postId',
+      controller: 'PostsViewCtrl'
+      resolve:
+        post: (PostsLoader) ->
+          return PostsLoader()
+      templateUrl: '/assets/postsView.html'
+    ).when('/new',
+      controller: 'PostsNewCtrl'
+      templateUrl: '/assets/postsForm.html'
+    ).otherwise(
+      redirectTo: '/'
+    )
 ])
 
 postsApp.config(['$httpProvider', ($httpProvider) ->
@@ -71,6 +64,12 @@ postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', ($scope, $l
 
 postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', ($scope, $location, Post) ->
   $scope.post = new Post({}) # populate??
+  date = new Date()
+  mo = date.getMonth()
+  day = date.getDate()
+  year = date.getFullYear()
+  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  $scope.date = months[mo] + " " + day + ", " + year
 
   $scope.save = ->
     $scope.post.$save (post) ->
