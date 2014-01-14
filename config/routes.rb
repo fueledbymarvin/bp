@@ -1,6 +1,7 @@
 Bp::Application.routes.draw do
   scope "/api", defaults: { format: :json } do
     resources :posts, only: [:index, :show, :create, :update, :destroy]
+    match 'films', to: "posts#films", as: "films", via: [:get]
   end
 
   root 'static_pages#home'

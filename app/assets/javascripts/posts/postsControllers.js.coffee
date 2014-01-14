@@ -9,24 +9,27 @@ postsApp.config(['$routeProvider', ($routeProvider) ->
       posts: (PostsListLoader) ->
         return PostsListLoader()
     templateUrl: '/assets/films.html'
-  ).when('/edit/:postId',
-      controller: 'PostsEditCtrl'
-      resolve:
-        post: (PostsLoader) ->
-          return PostsLoader()
-      templateUrl: '/assets/postsForm.html'
-    ).when('/view/:postId',
-      controller: 'PostsViewCtrl'
-      resolve:
-        post: (PostsLoader) ->
-          return PostsLoader()
-      templateUrl: '/assets/postsView.html'
-    ).when('/new',
-      controller: 'PostsNewCtrl'
-      templateUrl: '/assets/postsForm.html'
-    ).otherwise(
-      redirectTo: '/'
-    )
+  ).when('/blog/edit/:postId',
+    controller: 'PostsEditCtrl'
+    resolve:
+      post: (PostsLoader) ->
+        return PostsLoader()
+    templateUrl: '/assets/postsForm.html'
+  ).when('/blog/view/:postId',
+    controller: 'PostsViewCtrl'
+    resolve:
+      post: (PostsLoader) ->
+        return PostsLoader()
+    templateUrl: '/assets/postsView.html'
+  ).when('/films/new',
+    controller: 'PostsNewCtrl'
+    templateUrl: '/assets/postsForm.html'
+  ).when('/blog/new',
+    controller: 'PostsNewCtrl'
+    templateUrl: '/assets/postsForm.html'
+  ).otherwise(
+    redirectTo: '/'
+  )
 ])
 
 postsApp.config(['$httpProvider', ($httpProvider) ->
@@ -49,6 +52,10 @@ postsApp.controller('PostsViewCtrl', ['$scope', '$location', 'post', ($scope, $l
 
 postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentParser', ($scope, $location, post, ContentParser) ->
   $scope.post = post
+  if post.video
+    $scope.type = 'film'
+  else
+    $scope.type = 'post'
   $scope.date = ContentParser.parseDate(new Date(post.created_at))
 
   $scope.parseVimeo = (url) ->
@@ -56,6 +63,7 @@ postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentPar
     return ContentParser.parseVimeo(url)
   $(window).resize ->
     ContentParser.fixHeight()
+  ContentParser.fixHeight()
 
   $scope.save = ->
     $scope.post.$update ->
@@ -70,7 +78,11 @@ postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentPar
 ])
 
 postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentParser', ($scope, $location, Post, ContentParser) ->
-  $scope.post = new Post({}) # populate??
+  $scope.post = new Post({})
+  if $location.path().indexOf('/films') is 0
+    $scope.type = 'film'
+  else
+    $scope.type = 'post'
   $scope.date = ContentParser.parseDate(new Date())
 
   $scope.parseVimeo = (url) ->
@@ -78,6 +90,7 @@ postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentPars
     return ContentParser.parseVimeo(url)
   $(window).resize ->
     ContentParser.fixHeight()
+  ContentParser.fixHeight()
 
   $scope.save = ->
     $scope.post.$save (post) ->

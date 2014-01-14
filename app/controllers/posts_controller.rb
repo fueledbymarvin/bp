@@ -5,6 +5,10 @@ class PostsController < ApplicationController
     respond_with Post.all
   end
 
+  def films
+    respond_with Post.where("video IS NOT NULL")
+  end
+
   def show
     respond_with Post.find(params[:id])
   end

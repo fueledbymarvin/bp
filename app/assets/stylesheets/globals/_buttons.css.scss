@@ -10,6 +10,11 @@ btn-line {
   }
   .expander {
     @include transition( all 0.3s );
+    background: $bg-light;
+    position: absolute;
+    opacity: 0;
+    border-radius: 0.3em;
+    z-index: -1;
   }
   a, a:hover {
     color: $bg-light;
@@ -17,6 +22,21 @@ btn-line {
   }
   &.reveal a {
     color: $bg-dark;
+  }
+  &.inverted {
+    color: $bg-dark;
+    .wrapper {
+      border-color: $bg-dark;
+    }
+    .expander {
+      background: $bg-dark;
+    }
+    a, a:hover {
+      color: $bg-dark;
+    }
+    &.reveal a {
+      color: $bg-light;
+    }
   }
 }
 

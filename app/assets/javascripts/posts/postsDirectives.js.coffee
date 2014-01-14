@@ -125,20 +125,11 @@ postsDirectives.directive('btnLine', ->
     transclude: true
     templateUrl: 'assets/btnLine.html'
     link: (scope, element, attrs) ->
-      wrapH = element.find('.wrapper').outerHeight()
-      wrapW = element.find('.wrapper').outerWidth() + 3
-
-      element.find('.wrapper').prepend('<div class="expander"></div>')
+      wrapH = element.height() #element.find('.wrapper').outerHeight()
+      wrapW = element.width() #element.find('.wrapper').outerWidth()
       element.find('.expander').css
         height: wrapH + "px"
         width: wrapW + "px"
-        top: 0
-        left: 0
-        background: "white"
-        position: "absolute"
-        zIndex: -100
-        opacity: 0
-        borderRadius: "0.3em"
 
       element.hover ->
         element.addClass('reveal')
