@@ -1,12 +1,13 @@
 #base.container
   nav-bar inverted="true"
-  .header-bar
+  .header-bar.main
     .container
-      span ng-if="post.id"
-        h2 edit film
-      span ng-if="!post.id"
-        h2 new film
-  .content
+      .single-title
+        span ng-if="post.id"
+          h2 edit film
+        span ng-if="!post.id"
+          h2 new film
+  .content.main
     form role="form" name="postForm" ng-submit="save()"
       .form-group
         label for="inputTitle" Title
@@ -25,17 +26,24 @@
         textarea.form-control markdown-editor="" data-provide="markdown" ng-model="post.content" required=""
       .form-group
         label Preview
-        .header-bar
+        .header-bg
+          img ng-src="{{post.image}}"
+        .header-bar ng-class="{ translucent: post.image }"
           .container
             .post-title
               h2 {{post.title}}
               h3.splitter
                 | //
               h3.author {{post.author}}
-              h3.date {{date}}
+              h4.date {{date}}
         .content
-          span ng-if="post.content"
-            .post-content bind-html-unsafe="post.content|markdown"
+          .post-content
+            /span ng-if="post.image"
+              /img.top-img ng-src="{{post.image}}"
+            span ng-if="post.video"
+              iframe ng-src="{{parseVimeo(post.video)}}" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""
+            span ng-if="post.content"
+              .post-content bind-html-unsafe="post.content|markdown"
       .form-group
         button.btn.btn-primary ng-disabled="postForm.$invalid" Save
         button.btn.btn-danger ng-click="delete()" ng-show="post.id" Delete

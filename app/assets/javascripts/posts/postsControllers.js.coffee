@@ -47,8 +47,15 @@ postsApp.controller('PostsViewCtrl', ['$scope', '$location', 'post', ($scope, $l
     $location.path("/edit/" + post.id)
 ])
 
-postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', ($scope, $location, post) ->
+postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentParser', ($scope, $location, post, ContentParser) ->
   $scope.post = post
+  $scope.date = ContentParser.parseDate(new Date(post.created_at))
+
+  $scope.parseVimeo = (url) ->
+    ContentParser.fixHeight()
+    return ContentParser.parseVimeo(url)
+  $(window).resize ->
+    ContentParser.fixHeight()
 
   $scope.save = ->
     $scope.post.$update ->
@@ -62,14 +69,15 @@ postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', ($scope, $l
       # add failure callback
 ])
 
-postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', ($scope, $location, Post) ->
+postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentParser', ($scope, $location, Post, ContentParser) ->
   $scope.post = new Post({}) # populate??
-  date = new Date()
-  mo = date.getMonth()
-  day = date.getDate()
-  year = date.getFullYear()
-  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-  $scope.date = months[mo] + " " + day + ", " + year
+  $scope.date = ContentParser.parseDate(new Date())
+
+  $scope.parseVimeo = (url) ->
+    ContentParser.fixHeight()
+    return ContentParser.parseVimeo(url)
+  $(window).resize ->
+    ContentParser.fixHeight()
 
   $scope.save = ->
     $scope.post.$save (post) ->

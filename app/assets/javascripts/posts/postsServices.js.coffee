@@ -33,3 +33,24 @@ postsServices.filter 'markdown', ->
   return (text) ->
     converter = new Showdown.converter();
     return converter.makeHtml(text)
+
+postsServices.factory "ContentParser", ["$sce", ($sce) ->
+  return {
+    parseVimeo: (url) ->
+      return $sce.trustAsResourceUrl('//player.vimeo.com/video/' + url.substr(url.lastIndexOf('/') + 1))
+
+    fixHeight: ->
+      $("iframe").css
+        height: ($("iframe").width() / 16 * 9) + "px"
+      $(".header-bg img").removeClass "fix"
+      if $(".header-bg img").height() <= $(".header-bar").height()
+        $(".header-bg img").addClass "fix"
+
+    parseDate: (date) ->
+      mo = date.getMonth()
+      day = date.getDate()
+      year = date.getFullYear()
+      months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+      return months[mo] + " " + day + ", " + year
+  }
+]
