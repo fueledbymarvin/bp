@@ -70,6 +70,7 @@ postsDirectives.directive('navBar', ->
         $element.find('#nav-wrapper').css({ height: navHeight + "px" })
         if $scope.inverted
           $('#base .header-bar').addClass('reveal')
+          $('#base .header-bg').addClass('reveal')
           $('#base .content').addClass('reveal')
         else
           $('#bg-wrapper').css({ minHeight: navHeight + 560 + "px" })
@@ -84,6 +85,7 @@ postsDirectives.directive('navBar', ->
         $element.find('#nav-wrapper').css({ height: 0 })
         if $scope.inverted
           $('#base .header-bar').removeClass('reveal')
+          $('#base .header-bg').removeClass('reveal')
           $('#base .content').removeClass('reveal')
         else
           $('#home-content').css({ marginTop: 0 })
@@ -125,8 +127,8 @@ postsDirectives.directive('btnLine', ->
     transclude: true
     templateUrl: 'assets/btnLine.html'
     link: (scope, element, attrs) ->
-      wrapH = element.height() #element.find('.wrapper').outerHeight()
-      wrapW = element.width() #element.find('.wrapper').outerWidth()
+      wrapH = element.height()
+      wrapW = element.width()
       element.find('.expander').css
         height: wrapH + "px"
         width: wrapW + "px"

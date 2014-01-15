@@ -13,6 +13,13 @@ body {
 
   $header-height: 11em;
 
+  .header-bar.main, .header-bg.main {
+    @include transition( all 0.3s ease-in-out );
+    &.reveal {
+      margin-top: 0;
+    }
+  }
+
   .header-bar {
     position: absolute;
     width: 100%;
@@ -29,12 +36,6 @@ body {
     margin-top: 1.5em;
     @media only screen and (max-width: $screen-sm-min) {
       margin-top: 1em;
-    }
-    &.main {
-      @include transition( all 0.3s ease-in-out );
-      &.reveal {
-        margin-top: 0;
-      }
     }
     color: $bg-light;
     font-family: 'Novecento';
@@ -96,6 +97,7 @@ body {
     margin-top: 1.5em;
     overflow: hidden;
     img {
+      opacity: 0;
       width: 100%;
       @include transform( translate(0, -50%) );
       position: relative;

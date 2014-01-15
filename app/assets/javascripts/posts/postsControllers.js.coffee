@@ -43,8 +43,23 @@ postsApp.controller('PostsListCtrl', ['$scope', 'posts', ($scope, posts) ->
   $scope.posts = posts
 ])
 
-postsApp.controller('PostsViewCtrl', ['$scope', '$location', 'post', ($scope, $location, post) ->
+postsApp.controller('PostsViewCtrl', ['$scope', '$location', 'post', 'ContentParser', ($scope, $location, post, ContentParser) ->
   $scope.post = post
+  if post.video
+    $scope.type = 'film'
+  else
+    $scope.type = 'post'
+  $scope.date = ContentParser.parseDate(new Date(post.created_at))
+
+  $scope.parseVimeo = (url) ->
+    ContentParser.fixHeight()
+    return ContentParser.parseVimeo(url)
+  $(window).resize ->
+    ContentParser.fixHeight()
+  $("img").load ->
+    $(".header-bg img").css
+      opacity: 1
+    ContentParser.fixHeight()
 
   $scope.edit = ->
     $location.path("/edit/" + post.id)
@@ -63,7 +78,10 @@ postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentPar
     return ContentParser.parseVimeo(url)
   $(window).resize ->
     ContentParser.fixHeight()
-  ContentParser.fixHeight()
+  $("img").load ->
+    $(".header-bg img").css
+      opacity: 1
+    ContentParser.fixHeight()
 
   $scope.save = ->
     $scope.post.$update ->
@@ -90,7 +108,10 @@ postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentPars
     return ContentParser.parseVimeo(url)
   $(window).resize ->
     ContentParser.fixHeight()
-  ContentParser.fixHeight()
+  $("img").load ->
+    $(".header-bg img").css
+      opacity: 1
+    ContentParser.fixHeight()
 
   $scope.save = ->
     $scope.post.$save (post) ->

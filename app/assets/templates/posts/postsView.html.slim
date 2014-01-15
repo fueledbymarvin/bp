@@ -1,5 +1,22 @@
-h2 {{post.title}} | {{post.author}}
-.content bind-html-unsafe="post.content|markdown"
-
-form.form-horizontal ng-submit="edit()"
-  button.btn.btn-primary Edit
+#base.container
+  nav-bar inverted="true"
+  .header-bg.main
+    img ng-src="{{post.image}}"
+  .header-bar.main ng-class="{ translucent: post.image }"
+    .container
+      .post-title
+        h2 {{post.title}}
+        h3.splitter
+          | //
+        h3.author {{post.author}}
+        h4.date {{date}}
+  .content.main
+    .post-content
+      span ng-if="type != 'film'"
+        span ng-if="post.image"
+          img.top-img ng-src="{{post.image}}"
+      span ng-if="type == 'film'"
+        span ng-if="post.video"
+          iframe ng-src="{{parseVimeo(post.video)}}" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""
+      span ng-if="post.content"
+        .post-content bind-html-unsafe="post.content|markdown"
