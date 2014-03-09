@@ -2,11 +2,11 @@ class PostsController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Post.all
-  end
-
-  def films
-    respond_with Post.where("video IS NOT NULL")
+    if params[:films]
+      respond_with Post.where("video IS NOT NULL")
+    else
+      respond_with Post.all
+    end
   end
 
   def show

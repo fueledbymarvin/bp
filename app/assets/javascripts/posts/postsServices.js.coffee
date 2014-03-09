@@ -16,6 +16,19 @@ postsServices.factory "PostsListLoader", ["Post", "$q", (Post, $q) ->
     return delay.promise
 ]
 
+postsServices.factory "FilmsListLoader", ["Post", "$q", (Post, $q) ->
+  return ->
+    delay = $q.defer()
+    Post.query(
+      { films: true }
+      (films) ->
+        delay.resolve(films)
+      , ->
+        delay.reject("Unable to fetch Films")
+    )
+    return delay.promise
+]
+
 postsServices.factory "PostsLoader", ["Post", "$route", "$q", (Post, $route, $q) ->
   return ->
     delay = $q.defer()
@@ -36,15 +49,12 @@ postsServices.filter 'markdown', ->
 
 postsServices.factory "ContentParser", ["$sce", ($sce) ->
   return {
+    toggleVideo: ->
+      $("video-overlay").toggleClass "reveal"
+      return
+
     parseVimeo: (url) ->
       return $sce.trustAsResourceUrl('//player.vimeo.com/video/' + url.substr(url.lastIndexOf('/') + 1))
-
-    fixHeight: ->
-      $("iframe").css
-        height: ($("iframe").width() / 16 * 9) + "px"
-      $(".header-bg img").removeClass "fix"
-      if $(".header-bg img").height() <= $(".header-bar").height()
-        $(".header-bg img").addClass "fix"
 
     parseDate: (date) ->
       mo = date.getMonth()

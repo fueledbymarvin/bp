@@ -1,5 +1,13 @@
 #base.container
-  nav-bar inverted="true"
-  #header-bar
-  #content
-    p hi
+  nav-bar
+  header-bar.main.single-title kind="single" image="assets/films.png"
+    h2 Our Films
+  .content.main
+    .films-even
+      span ng-repeat="film in films"
+        span ng-if="$even"
+          film film="film"
+    .films-odd
+      span ng-repeat="film in films"
+        span ng-if="$odd"
+          film film="film"

@@ -10,52 +10,52 @@
 }
 
 @font-face {
-    font-family: 'Charis';
-    src: url('CharisSIL.eot');
-    src: url('CharisSIL.eot?#iefix') format('embedded-opentype'),
-         url('CharisSIL.woff') format('woff'),
-         url('CharisSIL.ttf') format('truetype'),
-         url('CharisSIL.svg#CharisSIL') format('svg');
+    font-family: 'Droid';
+    src: url('DroidSerif.eot');
+    src: url('DroidSerif.eot?#iefix') format('embedded-opentype'),
+         url('DroidSerif.woff') format('woff'),
+         url('DroidSerif.ttf') format('truetype'),
+         url('DroidSerif.svg#DroidSerif') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Charis';
-    src: url('CharisSIL-Bold.eot');
-    src: url('CharisSIL-Bold.eot?#iefix') format('embedded-opentype'),
-         url('CharisSIL-Bold.woff') format('woff'),
-         url('CharisSIL-Bold.ttf') format('truetype'),
-         url('CharisSIL-Bold.svg#CharisSIL-Bold') format('svg');
+    font-family: 'Droid';
+    src: url('DroidSerif-Bold.eot');
+    src: url('DroidSerif-Bold.eot?#iefix') format('embedded-opentype'),
+         url('DroidSerif-Bold.woff') format('woff'),
+         url('DroidSerif-Bold.ttf') format('truetype'),
+         url('DroidSerif-Bold.svg#DroidSerif-Bold') format('svg');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Charis';
-    src: url('CharisSIL-Italic.eot');
-    src: url('CharisSIL-Italic.eot?#iefix') format('embedded-opentype'),
-         url('CharisSIL-Italic.woff') format('woff'),
-         url('CharisSIL-Italic.ttf') format('truetype'),
-         url('CharisSIL-Italic.svg#CharisSIL-Italic') format('svg');
+    font-family: 'Droid';
+    src: url('DroidSerif-Italic.eot');
+    src: url('DroidSerif-Italic.eot?#iefix') format('embedded-opentype'),
+         url('DroidSerif-Italic.woff') format('woff'),
+         url('DroidSerif-Italic.ttf') format('truetype'),
+         url('DroidSerif-Italic.svg#DroidSerif-Italic') format('svg');
     font-weight: normal;
     font-style: italic, oblique;
 }
 
 @font-face {
-    font-family: 'Charis';
-    src: url('CharisSIL-BoldItalic.eot');
-    src: url('CharisSIL-BoldItalic.eot?#iefix') format('embedded-opentype'),
-         url('CharisSIL-BoldItalic.woff') format('woff'),
-         url('CharisSIL-BoldItalic.ttf') format('truetype'),
-         url('CharisSIL-BoldItalic.svg#CharisSIL-BoldItalic') format('svg');
+    font-family: 'Droid';
+    src: url('DroidSerif-BoldItalic.eot');
+    src: url('DroidSerif-BoldItalic.eot?#iefix') format('embedded-opentype'),
+         url('DroidSerif-BoldItalic.woff') format('woff'),
+         url('DroidSerif-BoldItalic.ttf') format('truetype'),
+         url('DroidSerif-BoldItalic.svg#DroidSerif-BoldItalic') format('svg');
     font-weight: bold;
     font-style: italic, oblique;
 }
 
 body {
     font-size: 16px;
-    font-family: 'Charis';
+    font-family: 'Droid';
     color: $bg-dark;
 }
 

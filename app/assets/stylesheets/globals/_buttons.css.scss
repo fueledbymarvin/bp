@@ -3,45 +3,40 @@ btn-line {
   color: $bg-light;
   font-family: 'Novecento';
   display: inline-block;
-  @include transition( all 0.3s );
   .wrapper {
     padding: 0.7em 1.4em 0.8em;
     border: 0.15em solid $bg-light;
     border-radius: 0.2em;
+    @include transition ( all 0.2s $ease-in-out-quad );
   }
-  .expander {
-    @include transition( all 0.3s );
-    background: $bg-light;
-    position: absolute;
-    opacity: 0;
-    border-radius: 0.3em;
-    z-index: -1;
-  }
-  a, a:hover {
+  a {
     color: $bg-light;
-    text-decoration: none;
+    @include transition ( all 0.1s $ease-in-out-quad );
   }
-  &.reveal a {
-    color: $bg-dark;
+  &.reveal {
+    .wrapper {
+      background: $bg-light;
+    }
+    a {
+      color: $bg-dark;
+    }
+    &.inverted a {
+      color: $bg-light;
+    }
   }
   &.inverted {
     color: $bg-dark;
     .wrapper {
       border-color: $bg-dark;
     }
-    .expander {
-      background: $bg-dark;
-    }
-    a, a:hover {
+    a {
       color: $bg-dark;
-    }
-    &.reveal a {
-      color: $bg-light;
     }
   }
 }
 
 nav-btn {
+  cursor: pointer;
   display: block;
   width: 1.5em;
   height: 1.5em;

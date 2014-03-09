@@ -1,48 +1,72 @@
-body {
-  background: url('simple_dashed-i.png') repeat center;
-  min-width: 100%;
-  min-height: 100%;
+// body {
+//   background: url('simple_dashed-i.png') repeat center;
+//   min-width: 100%;
+//   min-height: 100%;
+// }
+
+video-overlay {
+  @include transition( opacity 0.3s );
+  opacity: 0;
+  z-index: -20;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  #video-bg {
+    width: 100%;
+    height: 100%;
+    background: $bg-dark;
+    opacity: 0.9;
+  }
+  nav-btn {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    @include transform( translate(-100%, 0) );
+    margin: 1em 0 0 -1em;
+  }
+  #video-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include transform( translate(-50%, -50%) );
+    width: 80%;
+    height: 80%;
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &.reveal {
+    opacity: 1;
+    z-index: 9001;
+  }
 }
 
 #base {
-  #nav {
-    @media only screen and (min-width: $screen-sm-min) {
-      margin-top: 2em;
-    }
-  }
+  $header-height: 30em;
 
-  $header-height: 11em;
-
-  .header-bar.main, .header-bg.main {
+  header-bar.main {
     @include transition( all 0.3s ease-in-out );
     &.reveal {
       margin-top: 0;
     }
   }
 
-  .header-bar {
+  header-bar {
+    padding-top: 3em;
     position: absolute;
     width: 100%;
     left: 0;
-    background: $emphasis;
-    border-top: 0.15em solid darken($emphasis, 3%);
-    border-bottom: 0.15em solid darken($emphasis, 3%);
-    &.translucent {
-      background: rgba($emphasis, 0.4);
-      border-top: 0.15em solid rgba(darken($emphasis, 3%), 0.4);
-      border-bottom: 0.15em solid rgba(darken($emphasis, 3%), 0.4);
-    }
+    border-bottom: 0.15em solid $emphasis;
     height: $header-height;
-    margin-top: 1.5em;
-    @media only screen and (max-width: $screen-sm-min) {
-      margin-top: 1em;
-    }
     color: $bg-light;
     font-family: 'Novecento';
     .container {
       @include center-vert;
     }
     .single-title {
+      text-align: center;
       h2 {
         color: $bg-light;
         font-size: 3em;
@@ -50,92 +74,50 @@ body {
       }
     }
     .post-title {
+      text-align: center;
       h2 {
-        font-size: 2em;
-        display: inline-block;
+        font-size: 3em;
         letter-spacing: 0.1em;
-        @media only screen and (max-width: $screen-sm-min) {
-          display: block;
-        }
       }
       h3 {
-        font-family: 'Charis';
+        font-family: 'Droid';
         &.author {
-          display: inline-block;
-          font-size: 1.5em;
+          font-size: 2em;
           font-style: italic;
-          @media only screen and (max-width: $screen-sm-min) {
-            margin: 0.2em 0;
-          }
-        }
-        &.splitter {
-          display: inline-block;
-          @media only screen and (max-width: $screen-sm-min) {
-            display: none;
-          }
-          font-size: 1.5em;
-          font-style: italic;
-          margin: 0 0.3em;
+          margin-top: 0.2em;
         }
       }
       h4.date {
-        font-family: 'Charis';
+        font-family: 'Droid';
         display: block;
         font-size: 1em;
         font-style: normal;
-        margin-top: 0.8em;
+        margin-top: 1.5em;
       }
-    }
-  }
-
-  .header-bg {
-    position: absolute;
-    padding: 0.15em 0;
-    left: 0;
-    width: 100%;
-    height: $header-height;
-    margin-top: 1.5em;
-    overflow: hidden;
-    img {
-      opacity: 0;
-      width: 100%;
-      @include transform( translate(0, -50%) );
-      position: relative;
-      top: 50%;
-      &.fix {
-        height: 100%;
-        width: auto;
-        @include transform( translate(-50%, 0) );
-        top: 0;
-        left: 50%;
+      btn-line {
+        margin-top: 1em;
       }
-    }
-    @media only screen and (max-width: $screen-sm-min) {
-      margin-top: 1em;
     }
   }
 
   .content {
-    margin-top: $header-height + 3.5;
+    margin-top: $header-height + 12.3;
     @media only screen and (max-width: $screen-sm-min) {
-      margin-top: $header-height + 2.5;
+      margin-top: $header-height + 11.3;
       @include transition( all 0.3s ease-in-out );
     }
     &.main.reveal {
-      margin-top: $header-height + 1.5;
+      margin-top: $header-height + 10.3;
     }
     padding-bottom: 2em;
   }
 
   .post-content {
-    iframe {
-      width: 100%;
-      margin-bottom: 0.6em;
-    }
+    font-size: 1.125em;
     p {
       margin-bottom: 0.6em;
     }
-    line-height: 1.4em;
+    line-height: 1.5;
     ul {
       list-style: disc inside;
       margin: 0 0 0.6em 1em;

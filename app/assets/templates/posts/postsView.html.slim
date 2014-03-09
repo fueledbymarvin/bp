@@ -1,22 +1,11 @@
+span ng-if="type == 'film'"
+  span ng-if="post.video"
+    video-overlay video="{{parseVimeo(post.video)}}" close="toggleVideo()"
+
+nav-bar
 #base.container
-  nav-bar inverted="true"
-  .header-bg.main
-    img ng-src="{{post.image}}"
-  .header-bar.main ng-class="{ translucent: post.image }"
-    .container
-      .post-title
-        h2 {{post.title}}
-        h3.splitter
-          | //
-        h3.author {{post.author}}
-        h4.date {{date}}
+  header-bar.main image="{{post.image}}" post="post" type="{{type}}" action="toggleVideo()"
   .content.main
     .post-content
-      span ng-if="type != 'film'"
-        span ng-if="post.image"
-          img.top-img ng-src="{{post.image}}"
-      span ng-if="type == 'film'"
-        span ng-if="post.video"
-          iframe ng-src="{{parseVimeo(post.video)}}" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""
       span ng-if="post.content"
         .post-content bind-html-unsafe="post.content|markdown"

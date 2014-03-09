@@ -1,27 +1,29 @@
-#nav.row
-  .col-xs-3
-    logo inverted="{{inverted}}"
-  #nav-mobile.col-xs-9.visible-xs
-    nav-btn.pull-right item="menu" inverted="{{inverted}}"
-  #nav-wrapper
-    #nav-items.col-sm-9.col-xs-12 ng-class="{invert: inverted}"
-      ul#social
-        li
-          nav-btn item="fb" inverted="{{inverted}}" link="https://www.facebook.com/pages/Bulldog-Productions/102834406423998"
-        li
-          nav-btn item="vimeo" inverted="{{inverted}}" link="http://vimeo.com/bulldogproductionsyale"
-        li
-          nav-btn item="yt" inverted="{{inverted}}" link="http://www.youtube.com/user/yalebpfilms"
-        li
-          nav-btn item="email" inverted="{{inverted}}" link="mailto:info@bulldog-productions.com"
-      ul#menu
-        li
-          nav-text inverted="{{inverted}}" link="/#/films" films
-        li
-          nav-text inverted="{{inverted}}" link="/#/creators" creators
-        li
-          nav-text inverted="{{inverted}}" link="/#/about" about
-        li
-          nav-text inverted="{{inverted}}" link="/#/contact" contact
-        li
-          nav-text inverted="{{inverted}}" link="/#/blog" blog
+.nav-wrapper
+  .container.nav-container
+    #nav.row
+      .col-xs-3
+        logo
+      #nav-mobile.col-xs-9.visible-xs
+        nav-btn.pull-right item="menu"
+      #nav-wrapper
+        #nav-items.col-sm-9.col-xs-12
+          ul#social
+            li
+              nav-btn item="fb" link="https://www.facebook.com/pages/Bulldog-Productions/102834406423998"
+            li
+              nav-btn item="vimeo" link="http://vimeo.com/bulldogproductionsyale"
+            li
+              nav-btn item="yt" link="http://www.youtube.com/user/yalebpfilms"
+            li
+              nav-btn item="email" link="mailto:info@bulldog-productions.com"
+          ul#menu
+            li
+              nav-text link="/#/films" films
+            li
+              nav-text link="/#/creators" creators
+            li
+              nav-text link="/#/about" about
+            li
+              nav-text link="/#/contact" contact
+            li
+              nav-text link="/#/blog" blog

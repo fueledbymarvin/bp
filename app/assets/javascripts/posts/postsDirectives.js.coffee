@@ -42,7 +42,6 @@ postsDirectives.directive('navBtn', ->
     restrict: 'E'
     scope: {
       item: "@"
-      inverted: "@"
       link: "@"
     }
     link: (scope, element, attrs) ->
@@ -59,47 +58,50 @@ postsDirectives.directive('navBtn', ->
 postsDirectives.directive('navBar', ->
   return {
     restrict: 'E'
-    scope:
-      inverted: "@"
+    scope: {}
     templateUrl: 'assets/navBar.html'
     controller: ($scope, $element) ->
-      $scope.menuOpen = ->
-        $element.find('#nav-wrapper').css({ height: "auto" })
-        navHeight = $element.find('#nav-wrapper').height()
-        $element.find('#nav-wrapper').css({ height: 0 })
-        $element.find('#nav-wrapper').css({ height: navHeight + "px" })
-        if $scope.inverted
-          $('#base .header-bar').addClass('reveal')
-          $('#base .header-bg').addClass('reveal')
-          $('#base .content').addClass('reveal')
-        else
-          $('#bg-wrapper').css({ minHeight: navHeight + 560 + "px" })
-          bgHeight = $(window).height()
-          if bgHeight < 560
-            $('#home-content').css({ marginTop: navHeight * 0.45 + "px" })
-          else if bgHeight < 560 + navHeight
-            $('#home-content').css({ marginTop: navHeight - (bgHeight - 560) * 0.55 + "px" })
-          else
-            $('#home-content').css({ marginTop: navHeight + "px" })
-      $scope.menuClose = ->
-        $element.find('#nav-wrapper').css({ height: 0 })
-        if $scope.inverted
-          $('#base .header-bar').removeClass('reveal')
-          $('#base .header-bg').removeClass('reveal')
-          $('#base .content').removeClass('reveal')
-        else
-          $('#home-content').css({ marginTop: 0 })
-          $('#bg-wrapper').css({ minHeight: "560px" })
+      $scope.menu = ->
+        $('#view').toggleClass('open')
+        $('body').toggleClass('open')
     link: (scope, element, attrs) ->
-      element.find('#nav-mobile').click ->
-        if element.find('#nav-wrapper').height() is 0
-          scope.menuOpen()
-        else
-          scope.menuClose()
+      element.find('#nav-mobile nav-btn').click ->
+        scope.menu()
+
+      if element.find('#nav-wrapper').css("position") is "fixed"
+        element.find('#nav-wrapper').css { height: $(window).height() + "px" }
 
       $(window).resize ->
-        if $(window).width() >= 768 and element.find('#nav-wrapper').height() > 0
-          scope.menuClose()
+        if element.find('#nav-wrapper').css("position") is "fixed"
+          element.find('#nav-wrapper').css { height: $(window).height() + "px" }
+        else
+          $('#view').removeClass('open')
+          $('body').removeClass('open')
+          element.find('#nav-wrapper').css { height: "auto" }
+
+      $(window).scroll ->
+        element.find(".nav-wrapper").toggleClass("down", $(window).scrollTop() > 40)
+  }
+)
+
+postsDirectives.directive('headerBar', ->
+  return {
+    restrict: 'E'
+    scope:
+      image: "@"
+      post: "="
+      kind: "@"
+      type: "@"
+      action: "&"
+    templateUrl: 'assets/headerBar.html'
+    transclude: true
+    link: (scope, element, attrs) ->
+      if scope.image
+        element.css
+          backgroundImage: "url('" + scope.image + "')"
+          backgroundSize: "cover"
+          backgroundPosition: "center center"
+          backgroundRepeat: "no-repeat"
   }
 )
 
@@ -107,7 +109,6 @@ postsDirectives.directive('navText', ->
   return {
     restrict: 'E'
     scope:
-      inverted: "@"
       link: "@"
     transclude: true
     templateUrl: 'assets/navText.html'
@@ -127,28 +128,17 @@ postsDirectives.directive('btnLine', ->
     transclude: true
     templateUrl: 'assets/btnLine.html'
     link: (scope, element, attrs) ->
-      wrapH = element.height()
-      wrapW = element.width()
-      element.find('.expander').css
-        height: wrapH + "px"
-        width: wrapW + "px"
-
       element.hover ->
         element.addClass('reveal')
-        element.find('.expander').css
-          opacity: 1
       , ->
         element.removeClass('reveal')
-        element.find('.expander').css
-          opacity: 0
   }
 )
 
 postsDirectives.directive('logo', ->
   return {
     restrict: 'E'
-    scope:
-      inverted: "@"
+    scope: {}
     templateUrl: 'assets/logo.html'
     link: (scope, element, attrs) ->
       element.hover ->
@@ -157,5 +147,33 @@ postsDirectives.directive('logo', ->
       , ->
         element.find('#logo-hover').removeClass('transition')
         element.find('#logo-hover').removeClass('reveal')
+  }
+)
+
+postsDirectives.directive('videoOverlay', ['$sce', ($sce) ->
+  return {
+    restrict: 'E'
+    scope:
+      video: "@"
+      close: "&"
+    templateUrl: 'assets/videoOverlay.html'
+    link: (scope, element, attrs) ->
+      scope.validate = (url) ->
+        $sce.trustAsResourceUrl(url)
+  }
+])
+
+postsDirectives.directive('film', ->
+  return {
+    restrict: 'E'
+    scope:
+      film: "="
+    templateUrl: 'assets/film.html'
+    link: (scope, element, attrs) ->
+      element.css
+        backgroundImage: "url('" + scope.film.image + "')"
+        backgroundSize: "cover"
+        backgroundPosition: "center center"
+        backgroundRepeat: "no-repeat"
   }
 )

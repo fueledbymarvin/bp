@@ -1,12 +1,14 @@
+span ng-if="type == 'film'"
+  span ng-if="post.video"
+    video-overlay video="{{parseVimeo(post.video)}}" close="toggleVideo()"
+
 #base.container
-  nav-bar inverted="true"
-  .header-bar.main
-    .container
-      .single-title
-        span ng-if="post.id"
-          h2 edit {{type}}
-        span ng-if="!post.id"
-          h2 new {{type}}
+  nav-bar
+  header-bar.main kind="single" type="{{type}}"
+    span ng-if="post.id"
+      h2 edit {{type}}
+    span ng-if="!post.id"
+      h2 new {{type}}
   .content.main
     form role="form" name="postForm" ng-submit="save()"
       .form-group
@@ -30,27 +32,12 @@
           label for="inputContent" Notes
         span ng-if="type != 'film'"
           label for="inputContent" Content
-        textarea.form-control markdown-editor="" data-provide="markdown" ng-model="post.content" required=""
+        textarea.form-control markdown-editor="" data-provide="markdown" ng-model="post.content" required="" rows="20"
       .form-group
         label Preview
-        .header-bg
-          img ng-src="{{post.image}}"
-        .header-bar ng-class="{ translucent: post.image }"
-          .container
-            .post-title
-              h2 {{post.title}}
-              h3.splitter
-                | //
-              h3.author {{post.author}}
-              h4.date {{date}}
+        header-bar image="{{post.image}}" post="post" type="{{type}}" action="toggleVideo()"
         .content
           .post-content
-            span ng-if="type != 'film'"
-              span ng-if="post.image"
-                img.top-img ng-src="{{post.image}}"
-            span ng-if="type == 'film'"
-              span ng-if="post.video"
-                iframe ng-src="{{parseVimeo(post.video)}}" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""
             span ng-if="post.content"
               .post-content bind-html-unsafe="post.content|markdown"
       .form-group

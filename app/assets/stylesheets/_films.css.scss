@@ -1,0 +1,26 @@
+.films-even, .films-odd {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.films-even {
+  film {
+    margin-right: 0.5em;
+    float: right;
+  }
+}
+
+.films-odd {
+  film {
+    margin-left: 0.5em;
+    float: left;
+  }
+}
+
+film {
+  width: 30em;
+  height: 30em;
+  overflow: hidden;
+  margin-bottom: 1em;
+}

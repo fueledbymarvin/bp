@@ -4,10 +4,10 @@ postsApp.config(['$routeProvider', ($routeProvider) ->
   $routeProvider.when('/'
     templateUrl: '/assets/home.html'
   ).when('/films',
-    controller: 'PostsListCtrl'
+    controller: 'FilmsListCtrl'
     resolve:
-      posts: (PostsListLoader) ->
-        return PostsListLoader()
+      films: (FilmsListLoader) ->
+        return FilmsListLoader()
     templateUrl: '/assets/films.html'
   ).when('/blog/edit/:postId',
     controller: 'PostsEditCtrl'
@@ -43,6 +43,10 @@ postsApp.controller('PostsListCtrl', ['$scope', 'posts', ($scope, posts) ->
   $scope.posts = posts
 ])
 
+postsApp.controller('FilmsListCtrl', ['$scope', 'films', ($scope, films) ->
+  $scope.films = films
+])
+
 postsApp.controller('PostsViewCtrl', ['$scope', '$location', 'post', 'ContentParser', ($scope, $location, post, ContentParser) ->
   $scope.post = post
   if post.video
@@ -51,15 +55,10 @@ postsApp.controller('PostsViewCtrl', ['$scope', '$location', 'post', 'ContentPar
     $scope.type = 'post'
   $scope.date = ContentParser.parseDate(new Date(post.created_at))
 
+  $scope.toggleVideo = ContentParser.toggleVideo
+
   $scope.parseVimeo = (url) ->
-    ContentParser.fixHeight()
     return ContentParser.parseVimeo(url)
-  $(window).resize ->
-    ContentParser.fixHeight()
-  $("img").load ->
-    $(".header-bg img").css
-      opacity: 1
-    ContentParser.fixHeight()
 
   $scope.edit = ->
     $location.path("/edit/" + post.id)
@@ -73,15 +72,10 @@ postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentPar
     $scope.type = 'post'
   $scope.date = ContentParser.parseDate(new Date(post.created_at))
 
+  $scope.toggleVideo = ContentParser.toggleVideo
+
   $scope.parseVimeo = (url) ->
-    ContentParser.fixHeight()
     return ContentParser.parseVimeo(url)
-  $(window).resize ->
-    ContentParser.fixHeight()
-  $("img").load ->
-    $(".header-bg img").css
-      opacity: 1
-    ContentParser.fixHeight()
 
   $scope.save = ->
     $scope.post.$update ->
@@ -103,15 +97,10 @@ postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentPars
     $scope.type = 'post'
   $scope.date = ContentParser.parseDate(new Date())
 
+  $scope.toggleVideo = ContentParser.toggleVideo
+
   $scope.parseVimeo = (url) ->
-    ContentParser.fixHeight()
     return ContentParser.parseVimeo(url)
-  $(window).resize ->
-    ContentParser.fixHeight()
-  $("img").load ->
-    $(".header-bg img").css
-      opacity: 1
-    ContentParser.fixHeight()
 
   $scope.save = ->
     $scope.post.$save (post) ->

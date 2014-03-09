@@ -1,0 +1,11 @@
+.container
+  span ng-if="type == 'film' || type == 'post'"
+    .post-title
+      h2 {{post.title}}
+      h3.author {{post.author}}
+      h4.date {{date}}
+      span ng-if="type == 'film'"
+        span ng-if="post.video"
+          btn-line ng-click="action()" Play
+  span ng-if="kind == 'single'"
+    .single-title ng-transclude=""

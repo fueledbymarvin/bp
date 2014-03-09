@@ -1,12 +1,11 @@
-span ng-if="inverted"
-  a ng-href="{{link}}" target="_blank"
-    .nav-d-normal
-      img ng-src='{{"assets/" + item + "-i.png"}}'
-    .nav-d-hover
-      img ng-src='{{"assets/" + item + "-hover-i.png"}}'
-span ng-if="!inverted"
+span ng-if="link"
   a ng-href="{{link}}" target="_blank"
     .nav-d-normal
       img ng-src='{{"assets/" + item + ".png"}}'
     .nav-d-hover
       img ng-src='{{"assets/" + item + "-hover.png"}}'
+span ng-if="!link"
+  .nav-d-normal
+    img ng-src='{{"assets/" + item + ".png"}}'
+  .nav-d-hover
+    img ng-src='{{"assets/" + item + "-hover.png"}}'
