@@ -90,20 +90,43 @@ postsDirectives.directive('headerBar', ->
     scope:
       image: "@"
       post: "="
+      user: "="
       kind: "@"
       type: "@"
       action: "&"
+      date: "@"
     templateUrl: 'assets/headerBar.html'
     transclude: true
     link: (scope, element, attrs) ->
-      #scope.$watch(scope.image, (image) ->
+      updateImage = () ->
         if scope.image
           element.css
             backgroundImage: "url('" + scope.image + "')"
             backgroundSize: "cover"
             backgroundPosition: "center center"
             backgroundRepeat: "no-repeat"
-      #)
+      updateImage()
+      scope.$watch("image", ->
+        updateImage()
+      )
+
+      updateHeight = () ->
+        newHeight = $(window).height() - 142
+        element.css
+          height: newHeight + "px"
+        if newHeight < 480
+          element.find(".user").css
+            top: "480px"
+          element.parent().find(".content").css
+            marginTop: "480px"
+        else
+          element.find(".user").css
+            top: newHeight + "px"
+          element.parent().find(".content").css
+            marginTop: newHeight + "px"
+      updateHeight()
+      $(window).resize ->
+        updateHeight()
   }
 )
 
@@ -177,5 +200,26 @@ postsDirectives.directive('film', ->
         backgroundSize: "cover"
         backgroundPosition: "center center"
         backgroundRepeat: "no-repeat"
+  }
+)
+
+postsDirectives.directive('footer', ->
+  return {
+    restrict: 'E'
+    templateUrl: 'assets/footer.html'
+    link: (scope, element, attrs) ->
+      element.find('img.lighter').hover(
+        ->
+          $('img.lighter').css
+            opacity: 1
+          $('img.normal').css
+            opacity: 0
+      ,
+        ->
+          $('img.lighter').css
+            opacity: 0
+          $('img.normal').css
+            opacity: 1
+      )
   }
 )

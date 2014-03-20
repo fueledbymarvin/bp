@@ -14,6 +14,8 @@ postsApp.config(['$routeProvider', ($routeProvider) ->
     resolve:
       post: (PostsLoader) ->
         return PostsLoader()
+      user: (AuthService) ->
+        return AuthService.currentUser()
     templateUrl: '/assets/postsForm.html'
   ).when('/blog/view/:postId',
     controller: 'PostsViewCtrl'
@@ -23,13 +25,28 @@ postsApp.config(['$routeProvider', ($routeProvider) ->
     templateUrl: '/assets/postsView.html'
   ).when('/films/new',
     controller: 'PostsNewCtrl'
+    resolve:
+      user: (AuthService) ->
+        return AuthService.currentUser()
     templateUrl: '/assets/postsForm.html'
   ).when('/blog/new',
     controller: 'PostsNewCtrl'
+    resolve:
+      user: (AuthService) ->
+        return AuthService.currentUser()
     templateUrl: '/assets/postsForm.html'
   ).when('/creators',
     controller: 'UsersCtrl'
+    resolve:
+      user: (AuthService) ->
+        return AuthService.currentUser()
     templateUrl: '/assets/usersIndex.html'
+  ).when('/creators/:userId',
+    controller: 'UsersViewCtrl'
+    resolve:
+      user: (UsersLoader) ->
+        return UsersLoader()
+    templateUrl: '/assets/usersView.html'
   ).otherwise(
     redirectTo: '/'
   )
@@ -42,7 +59,7 @@ postsApp.config(['$httpProvider', ($httpProvider) ->
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
 ])
 
-postsApp.controller('PostsListCtrl', ['$scope', 'posts', ($scope, posts) ->
+postsApp.controller('PostsListCtrl', ['$scop  $scope.user = usere', 'posts', ($scope, posts) ->
   $scope.posts = posts
 ])
 
@@ -67,8 +84,14 @@ postsApp.controller('PostsViewCtrl', ['$scope', '$location', 'post', 'ContentPar
     $location.path("/edit/" + post.id)
 ])
 
-postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentParser', ($scope, $location, post, ContentParser) ->
+postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentParser', 'user', ($scope, $location, post, ContentParser, user) ->
   $scope.post = post
+  $scope.user = user
+
+  if $scope.user.admin is false and $scope.user.id isnt post.user_id
+    $location.path "/"
+    console.log "editing post that's not yours"
+
   if post.video
     $scope.type = 'film'
   else
@@ -82,7 +105,7 @@ postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentPar
 
   $scope.save = ->
     $scope.post.$update ->
-      $location.path("/view/" + post.id)
+      $location.path("/blog/view/" + post.id)
       # add failure callback
 
   $scope.delete = ->
@@ -92,8 +115,11 @@ postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentPar
       # add failure callback
 ])
 
-postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentParser', ($scope, $location, Post, ContentParser) ->
-  $scope.post = new Post({})
+postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentParser', 'user', 'AuthService', ($scope, $location, Post, ContentParser, user, AuthService) ->
+  $scope.user = user
+  AuthService.permission(user, false)
+  $scope.post = new Post({user_id: $scope.user.id})
+
   if $location.path().indexOf('/films') is 0
     $scope.type = 'film'
   else
@@ -107,17 +133,14 @@ postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentPars
 
   $scope.save = ->
     $scope.post.$save (post) ->
-      $location.path('/view/' + post.id)
+      $location.path('/blog/view/' + post.id)
       # add failure callback
 ])
 
 postsApp.controller('UsersCtrl', ['$scope', "AuthService", ($scope, AuthService) ->
   $scope.login = AuthService.login
-  AuthService.currentUser().success(
-    (data, status, headers, config) ->
-      $scope.user = data
-  ).error(
-    (data, status, headers, config) ->
-      $scope.user = {}
-  )
+])
+
+postsApp.controller('UsersViewCtrl', ['$scope', "user", ($scope, user) ->
+  $scope.user = user
 ])

@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    respond_with Post.find(params[:id])
+    respond_with inject_user(Post.find(params[:id]))
   end
 
   def create
@@ -41,5 +41,9 @@ private
     if !current_user.admin && current_user != @user
       redirect_to :root
     end
+  end
+
+  def inject_user(post)
+    post.to_json(include: :user)
   end
 end

@@ -1,3 +1,44 @@
+.content {
+  min-height: 100%;
+}
+
+footer {
+  height: 4em;
+  background: $bg-dark;
+  font-size: 0.75em;
+  p {
+    font-family: 'Novecento';
+    display: inline-block;
+    color: darken($bg-light, 32%);
+    margin-top: 1.5em;
+    letter-spacing: 0.16em;
+  }
+  a {
+    font-family: 'Droid';
+    display: inline-block;
+    color: darken($bg-light, 32%);
+    &:hover {
+      color: darken($bg-light, 18%);
+    }
+    margin-top: 1.5em;
+    margin-left: 3em;
+  }
+  .fbm {
+    float: right;
+    margin-top: 0.8em;
+  }
+  img {
+    height: 2.8em;
+    @include transition( all 0.1s $ease-in-out-quad );
+    &.normal {
+      @include transform( translate(100%, 0) );
+    }
+    &.lighter {
+      opacity: 0;
+    }
+  }
+}
+
 video-overlay {
   @include transition( opacity 0.3s );
   opacity: 0;
@@ -45,7 +86,8 @@ video-overlay {
     position: absolute;
     width: 100%;
     left: 0;
-    border-bottom: 0.15em solid $emphasis;
+    border-bottom: 0.16em solid $emphasis;
+    min-height: 30em;
     height: $header-height;
     color: $bg-light;
     font-family: 'Novecento';
@@ -59,6 +101,12 @@ video-overlay {
         font-size: 3em;
         letter-spacing: 0.1em;
       }
+      h3 {
+        font-family: 'Droid';
+        font-size: 2em;
+        font-style: italic;
+        margin-top: 0.5em;
+      }
     }
     .post-title {
       text-align: center;
@@ -71,31 +119,57 @@ video-overlay {
         &.author {
           font-size: 2em;
           font-style: italic;
-          margin-top: 0.2em;
+          margin-top: 0.5em;
         }
       }
       h4.date {
-        font-family: 'Droid';
+        font-family: 'Novecento';
         display: block;
         font-size: 1em;
-        font-style: normal;
-        margin-top: 1.5em;
+        margin-top: 2em;
       }
       btn-line {
-        margin-top: 1em;
+        margin-top: 3em;
+      }
+    }
+    .user {
+      $user-img: 3em;
+      width: 100%;
+      position: absolute;
+      top: $header-height;
+      margin-top: ($user-img / -2) - 0.08em;
+      .user-image {
+        @include center-horz;
+        @include box-sizing(border-box);
+        @include transform( rotate(45deg) );
+        width: $user-img;
+        height: $user-img;
+        margin-left: ($user-img / -2);
+        border: 0.16em solid $emphasis;
+        overflow: hidden;
+      }
+      img {
+        @include transform( rotate(-45deg) );
+        width: $user-img * 1.42;
+        height: $user-img * 1.42;
+        margin: -0.21 * $user-img;
       }
     }
   }
 
   .content {
-    margin-top: $header-height + 2em;
+    margin-top: $header-height;
+    padding-top: 3em;
     padding-bottom: 2em;
   }
 
   .post-content {
+    @include center-horz;
+    max-width: 720px;
     font-size: 1.125em;
+    letter-spacing: 0.01em;
     p {
-      margin-bottom: 0.6em;
+      margin-bottom: 1.5em;
     }
     line-height: 1.5;
     ul {
@@ -108,17 +182,49 @@ video-overlay {
       font-weight: bold;
     }
     img {
-      margin: 0.6em 10%;
-      width: 80%;
+      width: 100%;
       padding: 0.3em;
       background: $bg-light;
-      border: 0.1em solid darken($bg-light, 18%);
+      border: 0.08em solid darken($bg-light, 18%);
       border-radius: 0.3em;
-      &.top-img {
-        width: 100%;
-        margin-left: 0;
-        margin-top: 0;
+    }
+    .post-footer {
+      border-top: 0.08em solid darken($bg-light, 18%);
+      padding: 0.5em;
+    }
+    .written {
+      font-family: 'Novecento';
+      color: darken($bg-light, 32%);
+    }
+    .user-image {
+      $user-img: 4em;
+      @include box-sizing(border-box);
+      @include transform( rotate(45deg) );
+      margin-left: 0.21 * $user-img;
+      width: $user-img;
+      height: $user-img;
+      border: 0.24em solid $emphasis;
+      border-radius: 0.24em;
+      overflow: hidden;
+      img {
+        padding: 0;
+        border: none;
+        @include transform( rotate(-45deg) );
+        width: $user-img * 1.42;
+        height: $user-img * 1.42;
+        margin: -0.21 * $user-img;
       }
+    }
+    .user-info {
+      margin-top: -4.7em;
+      margin-left: 7em;
+    }
+    .user-name {
+      font-size: 1.5rem;
+      font-family: 'Novecento';
+    }
+    .user-blurb {
+      font-size: 1rem;
     }
   }
 

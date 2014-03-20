@@ -94,11 +94,23 @@ postsServices.factory "UsersLoader", ["User", "$route", "$q", (User, $route, $q)
     return delay.promise
 ]
 
-postsServices.factory "AuthService", ["User", "$http", (User, $http) ->
+postsServices.factory "AuthService", ["User", "$http", "$q", "$location", (User, $http, $q, $location) ->
   return {
     login: -> window.location.replace "/auth/google?origin=login"
     logout: -> window.location.replace "/logout"
-    #permission: ->
-    currentUser: -> $http.get('/api/current')
+    permission: (user, admin) ->
+      if user is "null" or user.approved is false or (user.admin is false and admin is true)
+        $location.path "/"
+        console.log "not authorized"
+    currentUser: ->
+      delay = $q.defer()
+      $http.get('/api/current').success(
+        (data, status, headers, config) ->
+          delay.resolve(data)
+      ).error(
+        (data, status, headers, config) ->
+          delay.reject("Unable to fetch current user")
+      )
+      return delay.promise
   }
 ]

@@ -4,8 +4,16 @@ span ng-if="type == 'film'"
 
 nav-bar
 #base.container
-  header-bar image="{{post.image}}" post="post" type="{{type}}" action="toggleVideo()"
-  .content
-    .post-content
-      span ng-if="post.content"
-        .post-content bind-html-unsafe="post.content|markdown"
+  	header-bar image="{{post.image}}" post="post" type="{{type}}" action="toggleVideo()" user="post.user" date="{{date}}"
+	.content
+	  .post-content
+	    span ng-if="post.content"
+	      .post-content bind-html-unsafe="post.content|markdown"
+	    .post-footer
+	        p.written written by
+	        .user-image
+	          img ng-src="{{post.user.image}}"
+	        .user-info
+		        .user-name {{post.user.name}}
+		        .user-blurb {{post.user.blurb}}
+footer

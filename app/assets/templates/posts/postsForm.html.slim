@@ -4,7 +4,7 @@ span ng-if="type == 'film'"
 
 #base.container
   nav-bar
-  header-bar kind="single" type="{{type}}"
+  header-bar.single-title kind="single" image="assets/form.jpg" type="{{type}}" post="post"
     span ng-if="post.id"
       h2 edit {{type}}
     span ng-if="!post.id"
@@ -14,12 +14,6 @@ span ng-if="type == 'film'"
       .form-group
         label for="inputTitle" Title
         input.form-control type="text" ng-model="post.title" required=""
-      .form-group
-        span ng-if="type == 'film'"
-          label for="inputAuthor" Director
-        span ng-if="type != 'film'"
-          label for="inputAuthor" Author
-        input.form-control type="text" ng-model="post.author" required=""
       .form-group
         label for="inputImage" Image Url
         input.form-control type="text" ng-model="post.image" required=""
@@ -35,7 +29,7 @@ span ng-if="type == 'film'"
         textarea.form-control markdown-editor="" data-provide="markdown" ng-model="post.content" required="" rows="20"
       .form-group
         label Preview
-        header-bar image="{{post.image}}" post="post" type="{{type}}" action="toggleVideo()"
+        header-bar image="{{post.image}}" post="post" type="{{type}}" action="toggleVideo()" user="user" date="{{date}}"
         .content
           .post-content
             span ng-if="post.content"
@@ -43,3 +37,4 @@ span ng-if="type == 'film'"
       .form-group
         btn-line.inverted.not-end ng-click="save()" ng-disabled="postForm.$invalid" Save
         btn-line.inverted ng-click="delete()" ng-show="post.id" Delete
+.footer
