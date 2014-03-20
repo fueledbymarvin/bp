@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
 	belongs_to :user
 
-	validates_presence_of :title, :author, :image, :content
+	validates_presence_of :title, :image, :content
 end

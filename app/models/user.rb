@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
     has_many :posts, dependent: :destroy
 
+    validates_presence_of :name, :email, :image, :gid, :admin, :approved, :blurb, :year
+
 	def self.from_omniauth(auth)
         user = find_or_initialize_by(gid: auth.uid)
 
@@ -12,6 +14,11 @@ class User < ActiveRecord::Base
             user.image = "assets/placeholder.png"
         end
         user.gid = auth.uid
+
+        user.admin = false
+        user.approved = false
+        user.blurb = user.name + " had not written anything yet."
+        user.year = "Unknown"
 
         user.save
 

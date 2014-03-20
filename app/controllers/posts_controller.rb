@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   respond_to :json
+  before_filter :authenticated, except: [:index, :show]
 
   def index
     if params[:films]
@@ -28,11 +29,17 @@ class PostsController < ApplicationController
 private
 
   def post_params
-    # if current_user && current_user.admin?
-    params.require(:post).permit!
-    # else
-    #   params.require(:post).permit(:title)
-    # end
+    if current_user && current_user.admin?
+      params.require(:post).permit!
+    else
+      params.require(:post).permit(:content, :title, :video, :image)
+    end
   end
 
+  def correct_user
+    @user = User.find(Post.params[:user_id])
+    if !current_user.admin && current_user != @user
+      redirect_to :root
+    end
+  end
 end

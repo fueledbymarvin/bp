@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticated
-  	if current_user.nil?
-      	session[:source] = request.path
+  	if current_user.nil? || !current_user.approved
+      session[:source] = request.path
   		flash[:error] = "You must be signed in to do that!"
   		redirect_to :root
   	end
