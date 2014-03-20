@@ -40,6 +40,8 @@ gem 'bootstrap-sass'
 gem 'angularjs-rails'
 gem 'newrelic_rpm'
 
+gem 'omniauth-google-oauth2'
+
 group :development, :test do
   gem 'better_errors', '~> 1.1'
   gem 'binding_of_caller'

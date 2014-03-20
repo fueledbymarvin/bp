@@ -4,12 +4,12 @@ span ng-if="type == 'film'"
 
 #base.container
   nav-bar
-  header-bar.main kind="single" type="{{type}}"
+  header-bar kind="single" type="{{type}}"
     span ng-if="post.id"
       h2 edit {{type}}
     span ng-if="!post.id"
       h2 new {{type}}
-  .content.main
+  .content
     form role="form" name="postForm" ng-submit="save()"
       .form-group
         label for="inputTitle" Title

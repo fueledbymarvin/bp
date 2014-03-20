@@ -13,17 +13,6 @@ btn-line {
     color: $bg-light;
     @include transition ( all 0.1s $ease-in-out-quad );
   }
-  &.reveal {
-    .wrapper {
-      background: $bg-light;
-    }
-    a {
-      color: $bg-dark;
-    }
-    &.inverted a {
-      color: $bg-light;
-    }
-  }
   &.inverted {
     color: $bg-dark;
     .wrapper {
@@ -31,6 +20,22 @@ btn-line {
     }
     a {
       color: $bg-dark;
+    }
+  }
+  &.reveal {
+    .wrapper {
+      background: $bg-light;
+    }
+    a {
+      color: $bg-dark;
+    }
+    &.inverted {
+      .wrapper {
+        background: $bg-dark;
+      }
+      a {
+        color: $bg-light;
+      }
     }
   }
 }

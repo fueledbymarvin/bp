@@ -28,6 +28,7 @@ module Bp
     config.assets.paths += ["#{Rails.root}/app/assets/templates",
         "#{Rails.root}/app/assets/templates/posts",
         "#{Rails.root}/app/assets/templates/nav",
-        "#{Rails.root}/app/assets/templates/buttons"]
+        "#{Rails.root}/app/assets/templates/buttons",
+        "#{Rails.root}/app/assets/templates/users"]
   end
 end

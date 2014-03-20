@@ -96,12 +96,14 @@ postsDirectives.directive('headerBar', ->
     templateUrl: 'assets/headerBar.html'
     transclude: true
     link: (scope, element, attrs) ->
-      if scope.image
-        element.css
-          backgroundImage: "url('" + scope.image + "')"
-          backgroundSize: "cover"
-          backgroundPosition: "center center"
-          backgroundRepeat: "no-repeat"
+      #scope.$watch(scope.image, (image) ->
+        if scope.image
+          element.css
+            backgroundImage: "url('" + scope.image + "')"
+            backgroundSize: "cover"
+            backgroundPosition: "center center"
+            backgroundRepeat: "no-repeat"
+      #)
   }
 )
 

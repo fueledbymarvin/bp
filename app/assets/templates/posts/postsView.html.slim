@@ -4,8 +4,8 @@ span ng-if="type == 'film'"
 
 nav-bar
 #base.container
-  header-bar.main image="{{post.image}}" post="post" type="{{type}}" action="toggleVideo()"
-  .content.main
+  header-bar image="{{post.image}}" post="post" type="{{type}}" action="toggleVideo()"
+  .content
     .post-content
       span ng-if="post.content"
         .post-content bind-html-unsafe="post.content|markdown"

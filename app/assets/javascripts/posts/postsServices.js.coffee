@@ -64,3 +64,33 @@ postsServices.factory "ContentParser", ["$sce", ($sce) ->
       return months[mo] + " " + day + ", " + year
   }
 ]
+
+postsServices.factory "User", ["$resource", ($resource) ->
+  $resource("/api/users/:id", { id: "@id" }, { update: { method: "PUT" } })
+]
+
+postsServices.factory "UsersLoader", ["User", "$route", "$q", (User, $route, $q) ->
+  return ->
+    delay = $q.defer()
+    User.get(
+      { id: $route.current.params.userId }
+      , (user) ->
+        delay.resolve(user)
+      , ->
+        delay.reject("Unable to fetch user " + $route.current.params.userId)
+    )
+    return delay.promise
+]
+
+postsServices.factory "CurrentUser", ["User", "$route", "$q", (User, $route, $q) ->
+  return ->
+    delay = $q.defer()
+    User.get(
+      { id: $route.current.params.userId }
+      , (user) ->
+        delay.resolve(user)
+      , ->
+        delay.reject("Unable to fetch user " + $route.current.params.userId)
+    )
+    return delay.promise
+]

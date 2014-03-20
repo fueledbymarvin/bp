@@ -27,6 +27,9 @@ postsApp.config(['$routeProvider', ($routeProvider) ->
   ).when('/blog/new',
     controller: 'PostsNewCtrl'
     templateUrl: '/assets/postsForm.html'
+  ).when('/creators',
+    controller: 'UsersCtrl'
+    templateUrl: '/assets/usersIndex.html'
   ).otherwise(
     redirectTo: '/'
   )
@@ -106,4 +109,8 @@ postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentPars
     $scope.post.$save (post) ->
       $location.path('/view/' + post.id)
       # add failure callback
+])
+
+postsApp.controller('UsersCtrl', ['$scope', ($scope) ->
+  
 ])

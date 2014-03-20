@@ -96,8 +96,7 @@ body.open {
 
   #social {
     float: right;
-    margin-top: 0.6em;
-    margin-bottom: 0.5em;
+    margin-top: 1.3em;
     @media only screen and (max-width: $screen-sm-min) {
       display: inline-block;
       float: none;
@@ -111,8 +110,12 @@ body.open {
   }
 
   #menu {
-    float: right;
-    clear: both;
+    float: left;
+    margin-top: 2.2em;
+    margin-left: -12%;
+    @media only screen and (max-width: $screen-md-min) {
+      margin-left: -10%;
+    }
     @media only screen and (max-width: $screen-sm-min) {
       display: block;
       float: none;
@@ -129,7 +132,7 @@ body.open {
         text-align: center;
       }
 
-      padding: 0 0 0 1em;
+      padding: 0 0 0 2em;
     }
   }
 
