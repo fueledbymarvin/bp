@@ -2,11 +2,12 @@ Bp::Application.routes.draw do
   scope "/api", defaults: { format: :json } do
     resources :posts, only: [:index, :show, :create, :update, :destroy]
     resources :users, only: [:index, :show, :create, :update, :destroy]
+    match 'current', to: "users#current", via: [:get]
   end
 
   match 'auth/:provider/callback', to: "sessions#create", via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get]
-  match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get]
+  match 'logout', to: 'sessions#destroy', as: 'logout', via: [:get]
 
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -11,7 +11,7 @@ postsServices.factory "PostsListLoader", ["Post", "$q", (Post, $q) ->
       (posts) ->
         delay.resolve(posts)
       , ->
-        delay.reject("Unable to fetch Posts")
+        delay.reject("Unable to fetch posts")
     )
     return delay.promise
 ]
@@ -24,7 +24,7 @@ postsServices.factory "FilmsListLoader", ["Post", "$q", (Post, $q) ->
       (films) ->
         delay.resolve(films)
       , ->
-        delay.reject("Unable to fetch Films")
+        delay.reject("Unable to fetch films")
     )
     return delay.promise
 ]
@@ -69,6 +69,18 @@ postsServices.factory "User", ["$resource", ($resource) ->
   $resource("/api/users/:id", { id: "@id" }, { update: { method: "PUT" } })
 ]
 
+postsServices.factory "UsersListLoader", ["User", "$q", (User, $q) ->
+  return ->
+    delay = $q.defer()
+    User.query(
+      (posts) ->
+        delay.resolve(users)
+      , ->
+        delay.reject("Unable to fetch users")
+    )
+    return delay.promise
+]
+
 postsServices.factory "UsersLoader", ["User", "$route", "$q", (User, $route, $q) ->
   return ->
     delay = $q.defer()
@@ -82,15 +94,11 @@ postsServices.factory "UsersLoader", ["User", "$route", "$q", (User, $route, $q)
     return delay.promise
 ]
 
-postsServices.factory "CurrentUser", ["User", "$route", "$q", (User, $route, $q) ->
-  return ->
-    delay = $q.defer()
-    User.get(
-      { id: $route.current.params.userId }
-      , (user) ->
-        delay.resolve(user)
-      , ->
-        delay.reject("Unable to fetch user " + $route.current.params.userId)
-    )
-    return delay.promise
+postsServices.factory "AuthService", ["User", "$http", (User, $http) ->
+  return {
+    login: -> window.location.replace "/auth/google?origin=login"
+    logout: -> window.location.replace "/logout"
+    #permission: ->
+    currentUser: -> $http.get('/api/current')
+  }
 ]

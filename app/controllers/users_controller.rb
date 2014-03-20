@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-    before_filter :authenticated, except: [:index, :show, :update]
-    before_fileter :correct_user
+	respond_to :json
+
+    before_filter :correct_user, only: [:update, :destroy]
 
     def index
       	respond_with User.all
@@ -19,7 +20,13 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		respond_with User.destroy(params[:id])
+		reset_session
+		respond_with @user.destroy
+	end
+
+	def current
+		p current_user
+		respond_with current_user
 	end
 
 private

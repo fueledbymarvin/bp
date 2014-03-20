@@ -111,6 +111,13 @@ postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentPars
       # add failure callback
 ])
 
-postsApp.controller('UsersCtrl', ['$scope', ($scope) ->
-  
+postsApp.controller('UsersCtrl', ['$scope', "AuthService", ($scope, AuthService) ->
+  $scope.login = AuthService.login
+  AuthService.currentUser().success(
+    (data, status, headers, config) ->
+      $scope.user = data
+  ).error(
+    (data, status, headers, config) ->
+      $scope.user = {}
+  )
 ])
