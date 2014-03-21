@@ -1,9 +1,14 @@
 #base.container
   nav-bar
-  header-bar.single-title kind="single" image="assets/form.jpg" user="user"
+  header-bar.single-title kind="single" image="assets/usersForm.jpg" user="user"
     h2 Editing {{user.name}}
   .content
     form role="form" name="userForm" ng-submit="save()"
+      .form-group ng-if="currentUser.admin"
+        label.permissions for="permissions" Permissions
+        input.checkbox-inline type="checkbox" ng-model="user.approved" Approved
+        br
+        input.checkbox-inline type="checkbox" ng-model="user.admin" Admin
       .form-group
         label for="year" College and Year
         .form-inline

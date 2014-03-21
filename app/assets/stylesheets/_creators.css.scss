@@ -2,6 +2,14 @@
 	padding-bottom: 2em;
 }
 
+.permissions, .check {
+	display: block;
+}
+
+.form-group input.checkbox-inline {
+	margin: 0.5em;
+}
+
 .work-wrapper {
 	text-align: center;
 	work {

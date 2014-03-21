@@ -29,6 +29,8 @@ module Bp
         "#{Rails.root}/app/assets/templates/posts",
         "#{Rails.root}/app/assets/templates/nav",
         "#{Rails.root}/app/assets/templates/buttons",
-        "#{Rails.root}/app/assets/templates/users"]
+        "#{Rails.root}/app/assets/templates/users",
+        "#{Rails.root}/app/assets/templates/films"
+    ]
   end
 end
