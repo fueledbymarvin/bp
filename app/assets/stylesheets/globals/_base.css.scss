@@ -13,7 +13,7 @@ footer {
     margin-top: 1.5em;
     letter-spacing: 0.16em;
   }
-  a {
+  a.email {
     font-family: 'Droid';
     display: inline-block;
     color: darken($bg-light, 32%);
@@ -155,6 +155,12 @@ video-overlay {
         margin: -0.21 * $user-img;
       }
     }
+  }
+
+  .underline {
+    width: 100%;
+    height: 1em;
+    background: url('diamond.png') repeat-x;
   }
 
   .content {

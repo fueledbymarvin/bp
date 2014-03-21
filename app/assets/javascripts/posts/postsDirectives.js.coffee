@@ -208,7 +208,7 @@ postsDirectives.directive('footer', ->
     restrict: 'E'
     templateUrl: 'assets/footer.html'
     link: (scope, element, attrs) ->
-      element.find('img.lighter').hover(
+      element.find('a.git').hover(
         ->
           $('img.lighter').css
             opacity: 1

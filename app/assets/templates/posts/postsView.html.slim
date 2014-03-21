@@ -10,6 +10,7 @@ nav-bar
 	    span ng-if="post.content"
 	      .post-content bind-html-unsafe="post.content|markdown"
 	    .post-footer
+	    	.underline
 	        p.written written by
 	        .user-image
 	          img ng-src="{{post.user.image}}"
