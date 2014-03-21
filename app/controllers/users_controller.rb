@@ -20,12 +20,13 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		reset_session
+		if current_user.id == @user.id
+			reset_session
+		end
 		respond_with @user.destroy
 	end
 
 	def current
-		p current_user
 		respond_with current_user
 	end
 

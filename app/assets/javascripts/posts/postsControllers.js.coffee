@@ -171,9 +171,29 @@ postsApp.controller('UsersEditCtrl', ['$scope', '$location', 'user', 'currentUse
   $scope.user = user
   $scope.currentUser = currentUser
 
+  $scope.colleges = ["Berkeley", "Branford", "Calhoun", "Davenport", "Ezra Stiles", "Jonathan Edwards", "Morse", "Pierson", "Saybrook", "Silliman", "Timothy Dwight", "Trumbull"]
+  currentYear = (new Date()).getFullYear()
+  $scope.years = []
+  for yr in [2014...(currentYear + 4)]
+    $scope.years.push({short: yr - (Math.floor(yr / 100) * 100), long: yr})
+
+  if user.year is "Unknown"
+    $scope.college = ""
+    $scope.year = ""
+  else
+    $scope.college = user.year.substring(0, user.year.indexOf("'") - 1)
+    $scope.year = user.year.substring(user.year.indexOf("'") + 1)
+
   if currentUser is "null" or $scope.user.admin is false and $scope.user.id isnt post.user_id
     $location.path "/"
     console.log "editing profile that's not yours"
+
+  $scope.$watch('college', (newCollege) ->
+    $scope.user.year = newCollege + " '" + $scope.year
+  )
+  $scope.$watch('year', (newYear) ->
+    $scope.user.year = $scope.college + " '" + newYear
+  )
 
   $scope.save = ->
     $scope.user.$update ->
@@ -183,6 +203,6 @@ postsApp.controller('UsersEditCtrl', ['$scope', '$location', 'user', 'currentUse
   $scope.delete = ->
     $scope.user.$delete ->
       $location.path("/")
-      delete $scope.post
+      delete $scope.user
       # add failure callback
 ])

@@ -1,0 +1,32 @@
+#base.container
+  nav-bar
+  header-bar.single-title kind="single" image="assets/form.jpg" user="user"
+    h2 Editing {{user.name}}
+  .content
+    form role="form" name="userForm" ng-submit="save()"
+      .form-group
+        label for="year" College and Year
+        .form-inline
+          select.form-control.college ng-model="college" required=""
+            option ng-repeat="c in colleges" ng-selected="c == college" value="{{c}}" {{c}}
+          select.form-control.year ng-model="year" required=""
+            option ng-repeat="y in years" ng-selected="y.short == year" value="{{y.short}}" {{y.long}}
+      .form-group
+        label for="blurb" Blurb
+        textarea.form-control markdown-editor="" data-provide="markdown" ng-model="user.blurb" required="" rows="20"
+      .form-group
+        label Preview
+        .user-content
+          .title about
+          .title-content
+            .post-content bind-html-unsafe="user.blurb|markdown"
+            p
+              'Want to make films with {{user.name}}? Send an email to 
+              a ng=href="mailto:{{user.email}}" {{user.email}}
+              '.
+      .form-group
+        .btns-wrap
+          .btns
+            btn-line.inverted.not-end ng-click="save()" ng-disabled="userForm.$invalid" Save
+            btn-line.inverted ng-click="delete()" Delete
+footer
