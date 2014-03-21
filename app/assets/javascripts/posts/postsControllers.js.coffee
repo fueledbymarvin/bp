@@ -22,6 +22,8 @@ postsApp.config(['$routeProvider', ($routeProvider) ->
     resolve:
       post: (PostsLoader) ->
         return PostsLoader()
+      user: (AuthService) ->
+        return AuthService.currentUser()
     templateUrl: '/assets/postsView.html'
   ).when('/films/new',
     controller: 'PostsNewCtrl'
@@ -41,12 +43,22 @@ postsApp.config(['$routeProvider', ($routeProvider) ->
       user: (AuthService) ->
         return AuthService.currentUser()
     templateUrl: '/assets/usersIndex.html'
-  ).when('/creators/:userId',
+  ).when('/creators/view/:userId',
     controller: 'UsersViewCtrl'
     resolve:
       user: (UsersLoader) ->
         return UsersLoader()
+      currentUser: (AuthService) ->
+        return AuthService.currentUser()
     templateUrl: '/assets/usersView.html'
+  ).when('/creators/edit/:userId',
+    controller: 'UsersEditCtrl'
+    resolve:
+      user: (UsersLoader) ->
+        return UsersLoader()
+      currentUser: (AuthService) ->
+        return AuthService.currentUser()
+    templateUrl: '/assets/usersForm.html'
   ).otherwise(
     redirectTo: '/'
   )
@@ -67,7 +79,8 @@ postsApp.controller('FilmsListCtrl', ['$scope', 'films', ($scope, films) ->
   $scope.films = films
 ])
 
-postsApp.controller('PostsViewCtrl', ['$scope', '$location', 'post', 'ContentParser', ($scope, $location, post, ContentParser) ->
+postsApp.controller('PostsViewCtrl', ['$scope', '$location', 'post', 'ContentParser', 'user', ($scope, $location, post, ContentParser, user) ->
+  $scope.user = user
   $scope.post = post
   if post.video
     $scope.type = 'film'
@@ -77,18 +90,20 @@ postsApp.controller('PostsViewCtrl', ['$scope', '$location', 'post', 'ContentPar
 
   $scope.toggleVideo = ContentParser.toggleVideo
 
+  $scope.editable = user.admin is true or user.id is post.user_id
+
   $scope.parseVimeo = (url) ->
     return ContentParser.parseVimeo(url)
 
   $scope.edit = ->
-    $location.path("/edit/" + post.id)
+    $location.path("/blog/edit/" + post.id)
 ])
 
 postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentParser', 'user', ($scope, $location, post, ContentParser, user) ->
   $scope.post = post
   $scope.user = user
 
-  if $scope.user.admin is false and $scope.user.id isnt post.user_id
+  if user is "null" or (user.admin is false and user.id isnt post.user_id)
     $location.path "/"
     console.log "editing post that's not yours"
 
@@ -110,7 +125,7 @@ postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentPar
 
   $scope.delete = ->
     $scope.post.$delete ->
-      $location.path("/")
+      $location.path("/creators/view/" + user.id)
       delete $scope.post
       # add failure callback
 ])
@@ -141,6 +156,31 @@ postsApp.controller('UsersCtrl', ['$scope', "AuthService", ($scope, AuthService)
   $scope.login = AuthService.login
 ])
 
-postsApp.controller('UsersViewCtrl', ['$scope', "user", ($scope, user) ->
+postsApp.controller('UsersViewCtrl', ['$scope', '$location', 'user', 'currentUser', ($scope, $location, user, currentUser) ->
   $scope.user = user
+  $scope.currentUser = currentUser
+  $scope.match = user.id is currentUser.id
+  if $scope.user.approved is false
+    $location.path "/"
+    console.log "viewing unapproved user"
+])
+
+postsApp.controller('UsersEditCtrl', ['$scope', '$location', 'user', 'currentUser', ($scope, $location, user, currentUser) ->
+  $scope.user = user
+  $scope.currentUser = currentUser
+
+  if currentUser is "null" or $scope.user.admin is false and $scope.user.id isnt post.user_id
+    $location.path "/"
+    console.log "editing profile that's not yours"
+
+  $scope.save = ->
+    $scope.user.$update ->
+      $location.path("/creators/view/" + user.id)
+      # add failure callback
+
+  $scope.delete = ->
+    $scope.user.$delete ->
+      $location.path("/")
+      delete $scope.post
+      # add failure callback
 ])

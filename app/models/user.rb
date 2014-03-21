@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
     validates_presence_of :name, :email, :image, :gid, :admin, :approved, :blurb, :year
 
-	def self.from_omniauth(auth)
+	def self.from_omniauth(auth, create)
         user = find_or_initialize_by(gid: auth.uid)
 
         user.name = auth.extra.raw_info.name
@@ -15,10 +15,12 @@ class User < ActiveRecord::Base
         end
         user.gid = auth.uid
 
-        user.admin = false
-        user.approved = false
-        user.blurb = user.name + " had not written anything yet."
-        user.year = "Unknown"
+        if create
+            user.admin = false
+            user.approved = false
+            user.blurb = user.name + " has not written anything yet."
+            user.year = "Unknown"
+        end
 
         user.save
 

@@ -6,15 +6,20 @@ nav-bar
 #base.container
   	header-bar image="{{post.image}}" post="post" type="{{type}}" action="toggleVideo()" user="post.user" date="{{date}}"
 	.content
-	  .post-content
-	    span ng-if="post.content"
-	      .post-content bind-html-unsafe="post.content|markdown"
-	    .post-footer
-	    	.underline
-	        p.written written by
-	        .user-image
-	          img ng-src="{{post.user.image}}"
-	        .user-info
-		        .user-name {{post.user.name}}
-		        .user-blurb {{post.user.blurb}}
+	  	.post-content
+		    span ng-if="post.content"
+		      .post-content bind-html-unsafe="post.content|markdown"
+		    .post-footer
+		    	.underline
+		        p.written written by
+		        .user-image
+		          a href="/#/creators/view/{{post.user.id}}"
+		          	img ng-src="{{post.user.image}}"
+		        .user-info
+		        	a href="/#/creators/view/{{post.user.id}}"
+			        	.user-name {{post.user.name}}
+			        .user-blurb bind-html-unsafe="post.user.blurb|markdown"
+		.btns-wrap
+			.btns
+				btn-line.inverted ng-click="edit()" ng-show="editable" Edit
 footer

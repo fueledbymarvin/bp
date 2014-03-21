@@ -157,12 +157,6 @@ video-overlay {
     }
   }
 
-  .underline {
-    width: 100%;
-    height: 1em;
-    background: url('diamond.png') repeat-x;
-  }
-
   .content {
     margin-top: $header-height;
     padding-top: 3em;
@@ -228,9 +222,21 @@ video-overlay {
     .user-name {
       font-size: 1.5rem;
       font-family: 'Novecento';
+      color: $bg-dark;
+      @include transition( all 0.1s );
+      &:hover {
+        color: lighten($bg-dark, 18%);
+      }
     }
     .user-blurb {
       font-size: 1rem;
+    }
+  }
+  .btns-wrap {
+    width: 100%;
+    .btns {
+      @include center-horz;
+      display: inline-block;
     }
   }
 

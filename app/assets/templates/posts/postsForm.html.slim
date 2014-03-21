@@ -35,6 +35,8 @@ span ng-if="type == 'film'"
             span ng-if="post.content"
               .post-content bind-html-unsafe="post.content|markdown"
       .form-group
-        btn-line.inverted.not-end ng-click="save()" ng-disabled="postForm.$invalid" Save
-        btn-line.inverted ng-click="delete()" ng-show="post.id" Delete
+        .btns-wrap
+          .btns
+            btn-line.inverted.not-end ng-click="save()" ng-disabled="postForm.$invalid" Save
+            btn-line.inverted ng-click="delete()" ng-show="post.id" Delete
 footer
