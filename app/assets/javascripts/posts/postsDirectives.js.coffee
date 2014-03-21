@@ -207,19 +207,37 @@ postsDirectives.directive('footer', ->
   return {
     restrict: 'E'
     templateUrl: 'assets/footer.html'
+  }
+)
+
+postsDirectives.directive('work', ->
+  return {
+    restrict: 'E'
+    scope:
+      image: "@"
+      post: "="
+      date: "@"
+    templateUrl: 'assets/work.html'
     link: (scope, element, attrs) ->
-      element.find('a.git').hover(
+      updateImage = () ->
+        if scope.image
+          element.find('.work-image').css
+            backgroundImage: "url('" + scope.image + "')"
+            backgroundSize: "cover"
+            backgroundPosition: "center center"
+            backgroundRepeat: "no-repeat"
+      updateImage()
+
+      element.hover(
         ->
-          $('img.lighter').css
+          element.find('.work-image').addClass "hover"
+          element.find('.work-overlay').css
             opacity: 1
-          $('img.normal').css
-            opacity: 0
       ,
         ->
-          $('img.lighter').css
+          element.find('.work-image').removeClass "hover"
+          element.find('.work-overlay').css
             opacity: 0
-          $('img.normal').css
-            opacity: 1
       )
   }
 )

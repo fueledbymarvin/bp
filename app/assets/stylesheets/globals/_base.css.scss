@@ -25,56 +25,10 @@ footer {
   }
   .fbm {
     float: right;
-    margin-top: 0.8em;
+    margin-top: 0.7em;
   }
   img {
     height: 2.8em;
-    @include transition( all 0.1s $ease-in-out-quad );
-    &.normal {
-      @include transform( translate(100%, 0) );
-    }
-    &.lighter {
-      opacity: 0;
-    }
-  }
-}
-
-video-overlay {
-  @include transition( opacity 0.3s );
-  opacity: 0;
-  z-index: -20;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  #video-bg {
-    width: 100%;
-    height: 100%;
-    background: $bg-dark;
-    opacity: 0.9;
-  }
-  nav-btn {
-    position: absolute;
-    left: 100%;
-    top: 0;
-    @include transform( translate(-100%, 0) );
-    margin: 1em 0 0 -1em;
-  }
-  #video-container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    @include transform( translate(-50%, -50%) );
-    width: 80%;
-    height: 80%;
-    iframe {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  &.reveal {
-    opacity: 1;
-    z-index: 9001;
   }
 }
 
@@ -128,9 +82,9 @@ video-overlay {
         font-size: 1em;
         margin-top: 2em;
       }
-      btn-line {
-        margin-top: 3em;
-      }
+    }
+    btn-line {
+      margin-top: 3em;
     }
     .user {
       $user-img: 3em;
@@ -162,75 +116,16 @@ video-overlay {
     padding-top: 3em;
     padding-bottom: 2em;
   }
-
-  .post-content {
-    @include center-horz;
-    max-width: 720px;
-    font-size: 1.125em;
-    letter-spacing: 0.01em;
-    p {
-      margin-bottom: 1.5em;
-    }
-    line-height: 1.5;
-    ul {
-      list-style: disc inside;
-      margin: 0 0 0.6em 1em;
-    }
-    h3 {
-      font-size: 1.4em;
-      margin: 1em 0;
-      font-weight: bold;
-    }
-    img {
-      width: 100%;
-      padding: 0.3em;
-      background: $bg-light;
-      border: 0.08em solid darken($bg-light, 18%);
-      border-radius: 0.3em;
-    }
-    .post-footer {
-      border-top: 0.08em solid darken($bg-light, 18%);
-      padding: 0.5em;
-    }
-    .written {
-      font-family: 'Novecento';
-      color: darken($bg-light, 32%);
-    }
-    .user-image {
-      $user-img: 4em;
-      @include box-sizing(border-box);
-      @include transform( rotate(45deg) );
-      margin-left: 0.21 * $user-img;
-      width: $user-img;
-      height: $user-img;
-      border: 0.24em solid $emphasis;
-      border-radius: 0.24em;
-      overflow: hidden;
-      img {
-        padding: 0;
-        border: none;
-        @include transform( rotate(-45deg) );
-        width: $user-img * 1.42;
-        height: $user-img * 1.42;
-        margin: -0.21 * $user-img;
-      }
-    }
-    .user-info {
-      margin-top: -4.7em;
-      margin-left: 7em;
-    }
-    .user-name {
-      font-size: 1.5rem;
-      font-family: 'Novecento';
-      color: $bg-dark;
-      @include transition( all 0.1s );
-      &:hover {
-        color: lighten($bg-dark, 18%);
-      }
-    }
-    .user-blurb {
-      font-size: 1rem;
-    }
+  .title {
+    font-family: 'Novecento';
+    margin-bottom: 0.5em;
+    font-size: 2em;
+    color: darken($bg-light, 32%);
+    line-height: 1.2em;
+    border-bottom: 0.08rem solid darken($bg-light, 18%);
+  }
+  .title-content {
+    padding: 0 0.5em;
   }
   .btns-wrap {
     width: 100%;

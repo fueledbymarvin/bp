@@ -1,0 +1,53 @@
+.user-content {
+	padding-bottom: 2em;
+}
+
+.work-wrapper {
+	text-align: center;
+	work {
+		width: 100%;
+		height: 10em;
+		display: block;
+		overflow: hidden;
+	}
+	a {
+		width: 100%;
+		height: 10em;
+		display: block;
+	}
+	.work-image {
+		height: 10em;
+		width: 100%;
+		@include transition( all 0.7s $ease-out-back );
+		@include transform( scale(1.01, 1.01) );
+		&.hover {
+			@include transform( scale(1.03, 1.03) );
+		}
+	}
+	.work-overlay {
+		width: 100%;
+		height: 10em;
+		position: relative;
+		margin-top: -10em;
+		background: rgba($bg-dark, 0.7);
+		opacity: 0;
+		@include transition( all 0.2s $ease-in-out-quad );
+	}
+	.work-titles {
+		color: $bg-light;
+		position: relative;
+		margin-top: -10em;
+		@include center-vert;
+	}
+	h2 {
+    	font-family: 'Novecento';
+    	font-size: 1.5em;
+        letter-spacing: 0.1em;
+    }
+    h3 {
+        font-family: 'Droid';
+        font-size: 1em;
+        font-style: italic;
+        margin-top: 0.5em;
+	}
+}

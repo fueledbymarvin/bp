@@ -156,13 +156,15 @@ postsApp.controller('UsersCtrl', ['$scope', "AuthService", ($scope, AuthService)
   $scope.login = AuthService.login
 ])
 
-postsApp.controller('UsersViewCtrl', ['$scope', '$location', 'user', 'currentUser', ($scope, $location, user, currentUser) ->
+postsApp.controller('UsersViewCtrl', ['$scope', '$location', 'user', 'currentUser', 'ContentParser', ($scope, $location, user, currentUser, ContentParser) ->
   $scope.user = user
   $scope.currentUser = currentUser
-  $scope.match = user.id is currentUser.id
+  $scope.match = user.id is currentUser.id or currentUser.admin
   if $scope.user.approved is false
     $location.path "/"
     console.log "viewing unapproved user"
+  $scope.dateParser = (date) ->
+    ContentParser.parseDate(new Date(date))
 ])
 
 postsApp.controller('UsersEditCtrl', ['$scope', '$location', 'user', 'currentUser', ($scope, $location, user, currentUser) ->

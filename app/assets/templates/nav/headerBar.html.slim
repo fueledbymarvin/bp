@@ -10,5 +10,6 @@
   span ng-if="kind == 'single'"
     .single-title ng-transclude=""
 .user ng-if="kind != 'single' && user"
-  .user-image
-    img ng-src="{{user.image}}"
+  a ng-href="/#/creators/view/{{user.id}}"
+    .user-image
+      img ng-src="{{user.image}}"

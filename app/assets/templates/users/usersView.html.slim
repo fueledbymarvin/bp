@@ -1,9 +1,25 @@
 nav-bar
 #base.container
-  	header-bar.single-title kind="single" image="{{user.image}}" user="user"
+	header-bar.single-title kind="single" image="{{user.image}}" user="user"
   		h2 {{user.name}}
   		h3 {{user.year}}
+  		btn-line link="mailto:{{user.email}}" Contact
 	.content
-	  .post-content
-	  	p {{user.blurb}}
+		.user-content
+			.title about
+			.title-content
+				.post-content bind-html-unsafe="user.blurb|markdown"
+				p
+					'Want to make films with {{user.name}}? Send an email to 
+					a ng=href="mailto:{{user.email}}" {{user.email}}
+					'.
+			.title work
+			.title-content
+				.work-wrapper ng-repeat="post in user.posts"
+					work image="{{post.image}}" date="{{dateParser(post.created_at)}}" post="post"
+		.btns-wrap ng-show="match"
+			.btns
+				btn-line.not-end.inverted link="/#/films/new" New Film
+				btn-line.not-end.inverted link="/#/blog/new" New Post
+				btn-line.inverted link="/#/creators/edit/{{user.id}}" Edit Profile
 footer
