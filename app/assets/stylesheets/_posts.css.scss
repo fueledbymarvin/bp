@@ -32,23 +32,23 @@
       	color: darken($bg-light, 32%);
     }
     .user-image {
-		$user-img: 4em;
-		@include box-sizing(border-box);
-		@include transform( rotate(45deg) );
-		margin-left: 0.21 * $user-img;
-		width: $user-img;
-		height: $user-img;
-		border: 0.24em solid $emphasis;
-		border-radius: 0.24em;
-		overflow: hidden;
-		img {
-			padding: 0;
-			border: none;
-			@include transform( rotate(-45deg) );
-			width: $user-img * 1.42;
-			height: $user-img * 1.42;
-			margin: -0.21 * $user-img;
-		}
+  		$user-img: 4em;
+  		@include box-sizing(border-box);
+  		@include transform( rotate(45deg) );
+  		margin-left: 0.21 * $user-img;
+  		width: $user-img;
+  		height: $user-img;
+  		border: 0.24em solid $emphasis;
+  		border-radius: 0.24em;
+  		overflow: hidden;
+  		img {
+  			padding: 0;
+  			border: none;
+  			@include transform( rotate(-45deg) );
+  			width: $user-img * 1.42;
+  			height: $user-img * 1.42;
+  			margin: -0.21 * $user-img;
+  		}
     }
     .user-info {
 		margin-top: -4.7em;

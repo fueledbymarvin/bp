@@ -42,6 +42,8 @@ postsApp.config(['$routeProvider', ($routeProvider) ->
     resolve:
       user: (AuthService) ->
         return AuthService.currentUser()
+      creators: (UsersListLoader) ->
+        return UsersListLoader()
     templateUrl: '/assets/usersIndex.html'
   ).when('/creators/view/:userId',
     controller: 'UsersViewCtrl'
@@ -152,8 +154,9 @@ postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentPars
       # add failure callback
 ])
 
-postsApp.controller('UsersCtrl', ['$scope', "AuthService", ($scope, AuthService) ->
-  $scope.login = AuthService.login
+postsApp.controller('UsersCtrl', ['$scope', 'user', 'creators', ($scope, user, creators) ->
+  $scope.user = user
+  $scope.creators = creators
 ])
 
 postsApp.controller('UsersViewCtrl', ['$scope', '$location', 'user', 'currentUser', 'ContentParser', ($scope, $location, user, currentUser, ContentParser) ->

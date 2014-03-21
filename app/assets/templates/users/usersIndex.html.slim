@@ -1,8 +1,18 @@
 nav-bar
 #base.container
-  header-bar.single-title kind="single" image="assets/creators.jpg"
-    h2 Creators
-  .content
-  	span ng-click="login()" hello
-  	p {{user.name}}
+  	header-bar.single-title kind="single" image="assets/creators.jpg"
+    	h2 Creators
+  	.content
+  		.creators-title
+  			.creators-info
+  				h2 ng-if="user == 'null'" BP Filmmakers
+  				a ng-href="/#/creators/view/{{user.id}}" ng-if="user != 'null'"
+  					h2 {{user.name}}
+  			.creators-auth
+  				a ng-href="/auth/google?origin=login" ng-if="user == 'null'" Log In
+  				a ng-href="/auth/google?origin=signup" ng-if="user == 'null'" Sign Up
+  				a ng-href="/logout" ng-if="user != 'null'" Log Out
+  		.title-content
+  			.creator ng-repeat="creator in creators"
+  				img ng-src="{{creator.image}}"
 footer

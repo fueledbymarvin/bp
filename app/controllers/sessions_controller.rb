@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 	        # source = session[:source] || :root
 	        session[:source] = nil
 
-	        redirect_to :root, :notice => "Signed in!"
+	        redirect_to "/#/creators", :notice => "Signed in!"
 	    end
 	else
 		user = User.from_omniauth(env["omniauth.auth"], true)
@@ -18,12 +18,12 @@ class SessionsController < ApplicationController
         # source = session[:source] || :root
         session[:source] = nil
 
-        redirect_to :root, :notice => "Successfully created account!"
+        redirect_to "/#/creators/edit/#{user.id}", :notice => "Successfully created account!"
 	end
   end
 
   def destroy
   	reset_session
-    redirect_to :root, :notice => "Signed out!"
+    redirect_to "/#/creators", :notice => "Signed out!"
   end
 end

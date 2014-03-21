@@ -5,9 +5,39 @@
 .permissions, .check {
 	display: block;
 }
-
 .form-group input.checkbox-inline {
 	margin: 0.5em;
+}
+
+.creators-title {
+	width: 100%;
+	float: left;
+	border-bottom: 0.08em solid darken($bg-light, 18%);
+	margin-bottom: 1em;
+	font-family: 'Novecento';
+	color: darken($bg-light, 32%);
+	a {
+		display: inline-block;
+		color: darken($bg-light, 32%);
+		@include transition( all 0.1s );
+		&:hover {
+			color: $bg-dark;
+		}
+	}
+	.creators-info {
+		float: left;
+		font-size: 2em;
+		margin-top: -0.2em;
+	}
+	.creators-auth {
+		float: right;
+		a {
+			padding: 0.5em;
+		}
+	}
+	.title-content {
+		clear: both;
+	}
 }
 
 .work-wrapper {

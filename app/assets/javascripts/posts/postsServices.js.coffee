@@ -73,7 +73,7 @@ postsServices.factory "UsersListLoader", ["User", "$q", (User, $q) ->
   return ->
     delay = $q.defer()
     User.query(
-      (posts) ->
+      (users) ->
         delay.resolve(users)
       , ->
         delay.reject("Unable to fetch users")
@@ -97,6 +97,7 @@ postsServices.factory "UsersLoader", ["User", "$route", "$q", (User, $route, $q)
 postsServices.factory "AuthService", ["User", "$http", "$q", "$location", (User, $http, $q, $location) ->
   return {
     login: -> window.location.replace "/auth/google?origin=login"
+    signup: -> window.location.replace "/auth/google?origin=signup"
     logout: -> window.location.replace "/logout"
     permission: (user, admin) ->
       if user is "null" or user.approved is false or (user.admin is false and admin is true)
