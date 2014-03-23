@@ -9,6 +9,35 @@
 	margin: 0.5em;
 }
 
+.creator-content {
+	clear: both;
+	margin: 1em 0 2em;
+	.creator {
+		margin: 3em 0 2em;
+		user-image {
+			display: inline-block;
+			@include user-image-size(6em);
+			@include transition( all 0.2s );
+			border-color: darken($bg-light, 18%);
+			&:hover {
+				border-color: $emphasis;
+			}
+		}
+		text-align: center;
+		.user-info {
+			margin-top: 1.5em;
+		}
+		h2 {
+			font-size: 1.5em;
+			font-family: 'Novecento';
+		}
+		h3 {
+			margin-top: 0.5em;
+			font-style: italic;
+		}
+	}
+}
+
 .creators-title {
 	width: 100%;
 	float: left;
@@ -19,7 +48,7 @@
 	a {
 		display: inline-block;
 		color: darken($bg-light, 32%);
-		@include transition( all 0.1s );
+		@include transition( all 0.2s );
 		&:hover {
 			color: $bg-dark;
 		}
@@ -34,9 +63,6 @@
 		a {
 			padding: 0.5em;
 		}
-	}
-	.title-content {
-		clear: both;
 	}
 }
 

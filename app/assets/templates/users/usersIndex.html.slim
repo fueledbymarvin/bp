@@ -5,14 +5,17 @@ nav-bar
   	.content
   		.creators-title
   			.creators-info
-  				h2 ng-if="user == 'null'" BP Filmmakers
+  				h2 ng-if="user == 'null'" Our Filmmakers
   				a ng-href="/#/creators/view/{{user.id}}" ng-if="user != 'null'"
   					h2 {{user.name}}
   			.creators-auth
   				a ng-href="/auth/google?origin=login" ng-if="user == 'null'" Log In
   				a ng-href="/auth/google?origin=signup" ng-if="user == 'null'" Sign Up
   				a ng-href="/logout" ng-if="user != 'null'" Log Out
-  		.title-content
-  			.creator ng-repeat="creator in creators"
-  				img ng-src="{{creator.image}}"
+  		.creator-content.title-content.row
+  			.creator.col-xs-6.col-md-4 ng-repeat="creator in creators" ng-if="creator.approved || user.admin"
+					user-image.hover user="creator"
+					.user-info
+						h2 {{creator.name}}
+						h3 {{creator.year}}
 footer

@@ -241,3 +241,12 @@ postsDirectives.directive('work', ->
       )
   }
 )
+
+postsDirectives.directive('userImage', ->
+  return {
+    restrict: 'E'
+    scope:
+      user: "="
+    templateUrl: 'assets/userImage.html'
+  }
+)

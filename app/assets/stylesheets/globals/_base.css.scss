@@ -88,26 +88,20 @@ footer {
       margin-top: 3em;
     }
     .user {
-      $user-img: 3em;
       width: 100%;
       position: absolute;
       top: $header-height;
-      margin-top: ($user-img / -2) - 0.08em;
-      .user-image {
+      margin-top: -1.58em;
+      .user-wrapper {
         @include center-horz;
-        @include box-sizing(border-box);
-        @include transform( rotate(45deg) );
-        width: $user-img;
-        height: $user-img;
-        margin-left: ($user-img / -2);
-        border: 0.16em solid $emphasis;
-        overflow: hidden;
+        display: inline-block;
       }
-      img {
-        @include transform( rotate(-45deg) );
-        width: $user-img * 1.42;
-        height: $user-img * 1.42;
-        margin: -0.21 * $user-img;
+      user-image {
+        @include user-image-size(3em);
+        border-color: $emphasis;
+        &:hover {
+          border-color: darken($emphasis, 8%);
+        }
       }
     }
   }
@@ -148,5 +142,20 @@ footer {
 
   btn-line.not-end {
     margin-right: 0.3em;
+  }
+}
+
+user-image {
+  display: block;
+  @include user-image-size(4em);
+  @include box-sizing(border-box);
+  @include transform( rotate(45deg) );
+  overflow: hidden;
+  border-color: $emphasis;
+  img {
+    padding: 0 !important;
+    border: none !important;
+    width: auto !important;
+    @include transform( rotate(-45deg) );
   }
 }

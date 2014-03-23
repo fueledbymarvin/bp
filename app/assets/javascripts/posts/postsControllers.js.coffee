@@ -156,6 +156,7 @@ postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentPars
 
 postsApp.controller('UsersCtrl', ['$scope', 'user', 'creators', ($scope, user, creators) ->
   $scope.user = user
+  console.log creators
   $scope.creators = creators
 ])
 
@@ -163,7 +164,7 @@ postsApp.controller('UsersViewCtrl', ['$scope', '$location', 'user', 'currentUse
   $scope.user = user
   $scope.currentUser = currentUser
   $scope.match = user.id is currentUser.id or currentUser.admin
-  if $scope.user.approved is false
+  if user.approved is false and currentUser.admin is false and $scope.match is false
     $location.path "/"
     console.log "viewing unapproved user"
   $scope.dateParser = (date) ->
@@ -187,7 +188,7 @@ postsApp.controller('UsersEditCtrl', ['$scope', '$location', 'user', 'currentUse
     $scope.college = user.year.substring(0, user.year.indexOf("'") - 1)
     $scope.year = user.year.substring(user.year.indexOf("'") + 1)
 
-  if currentUser is "null" or $scope.user.admin is false and $scope.user.id isnt post.user_id
+  if currentUser is "null" or currentUser.admin is false and user.id isnt currentUser.user_id
     $location.path "/"
     console.log "editing profile that's not yours"
 

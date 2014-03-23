@@ -13,3 +13,15 @@ $emphasis: #87D69B; //#AAE3AB
   left: 50%;
   @include transform( translate(-50%, 0) );
 }
+
+@mixin user-image-size($size) {
+	width: $size;
+	height: $size;
+	border: (0.06 * $size) solid $emphasis;
+	border-radius: 0.06 * $size;
+	img {
+	  	width: $size * 1.42;
+	  	height: $size * 1.42;
+	  	margin: -0.21 * $size;
+	}
+}

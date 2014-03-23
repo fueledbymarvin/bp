@@ -12,9 +12,7 @@ nav-bar
 		    .post-footer
 		    	.underline
 		        p.written written by
-		        .user-image
-		          a href="/#/creators/view/{{post.user.id}}"
-		          	img ng-src="{{post.user.image}}"
+		        user-image.hover-green user="post.user"
 		        .user-info
 		        	a href="/#/creators/view/{{post.user.id}}"
 			        	.user-name {{post.user.name}}

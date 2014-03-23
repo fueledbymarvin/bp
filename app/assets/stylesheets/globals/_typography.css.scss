@@ -64,11 +64,11 @@ h1 {
 }
 
 a {
-	color: darken($emphasis, 25%);;
+	color: darken($emphasis, 8%);
 	text-decoration: none;
-    @include transition( all 0.1s );
+    @include transition( all 0.2s );
 	&:hover {
-        color: darken($emphasis, 40%);
+        color: $emphasis;
 		text-decoration: none;
 	}
 }
