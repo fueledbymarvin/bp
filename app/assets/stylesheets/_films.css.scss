@@ -1,30 +1,3 @@
-.films-even, .films-odd {
-  width: 50%;
-  display: inline-block;
-  vertical-align: top;
-}
-
-.films-even {
-  film {
-    margin-right: 0.5em;
-    float: right;
-  }
-}
-
-.films-odd {
-  film {
-    margin-left: 0.5em;
-    float: left;
-  }
-}
-
-film {
-  width: 30em;
-  height: 30em;
-  overflow: hidden;
-  margin-bottom: 1em;
-}
-
 video-overlay {
   @include transition( opacity 0.3s );
   opacity: 0;
@@ -61,5 +34,72 @@ video-overlay {
   &.reveal {
     opacity: 1;
     z-index: 9001;
+  }
+}
+
+.films-wrapper {
+  film {
+    margin-bottom: -0.2em;
+    width: 33.3333333333333%;
+    @media only screen and (max-width: $screen-md-min) {
+      width: 50%;
+    }
+    @media only screen and (max-width: $screen-sm-min) {
+      width: 100%;
+    }
+    display: inline-block;
+    overflow: hidden;
+  }
+  .film-image {
+    width: 100%;
+    @include transition( all 0.7s $ease-out-back );
+    @include transform( scale(1.01, 1.01) );
+    &.hover {
+      @include transform( scale(1.03, 1.03) );
+    }
+  }
+  .film-overlay {
+    width: 100%;
+    position: relative;
+    background: rgba($bg-dark, 0.7);
+    opacity: 0;
+    @include transition( all 0.3s $ease-in-out-quad );
+  }
+  .film-titles {
+    text-align: center;
+    color: $bg-light;
+    position: relative;
+    @include center-vert;
+    padding: 2em;
+  }
+  .film-btns {
+    margin-top: 0;
+    overflow: hidden;
+    height: 0;
+    @include transition( all 0.5s $ease-in-out-back, opacity 0.5s $ease-in-out-quad );
+    opacity: 0;
+    &.reveal {
+      height: 3.75em;
+      margin-top: 1.5em;
+      opacity: 1;
+    }
+    @include nav-btn-size(3.75em);
+    nav-btn {
+      display: inline-block;
+      &:nth-of-type(1) {
+        margin-right: 0.8em;
+      }
+    }
+  }
+  h2 {
+    font-family: 'Novecento';
+    font-size: 2em;
+    letter-spacing: 0.1em;
+  }
+  h4 {
+    font-family: 'Droid';
+    margin-top: 0.8em;
+    font-size: 1.2em;
+    font-style: italic;
   }
 }

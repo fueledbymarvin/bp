@@ -3,7 +3,9 @@ a ng-href="/#/blog/view/{{post.id}}"
 	.work-overlay
 	.work-titles
 		h2 {{post.title}}
-		h3 {{date}}
-/ .work-type
-/ 	p ng-if="post.video" FILM
-/ 	p ng-if="!post.video" BLOG
+		h4 {{date}}
+		.work-type
+			.work-reveal ng-if="post.video"
+				nav-btn item="film"
+			.work-reveal ng-if="!post.video"
+				nav-btn item="blog"

@@ -4,9 +4,9 @@ class PostsController < ApplicationController
 
   def index
     if params[:films]
-      respond_with Post.where("video IS NOT NULL")
+      respond_with inject_user(Post.where("video IS NOT NULL"))
     else
-      respond_with Post.all
+      respond_with inject_user(Post.all)
     end
   end
 

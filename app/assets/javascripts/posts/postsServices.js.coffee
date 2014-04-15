@@ -44,7 +44,7 @@ postsServices.factory "PostsLoader", ["Post", "$route", "$q", (Post, $route, $q)
 
 postsServices.filter 'markdown', ->
   return (text) ->
-    converter = new Showdown.converter();
+    converter = new Showdown.converter()
     return converter.makeHtml(text)
 
 postsServices.factory "ContentParser", ["$sce", ($sce) ->
@@ -62,6 +62,11 @@ postsServices.factory "ContentParser", ["$sce", ($sce) ->
       year = date.getFullYear()
       months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
       return months[mo] + " " + day + ", " + year
+
+    getBlurb: (text) ->
+      converter = new Showdown.converter()
+      cleaned = converter.makeHtml(text).replace(/(<([^>]+)>)/ig,"")
+      cleaned.substring(0, cleaned.indexOf('\n'))
   }
 ]
 

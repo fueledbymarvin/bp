@@ -1,4 +1,5 @@
 .post-content, .user-content {
+    //font-family: 'Droid';
     @include center-horz;
     max-width: 720px;
     font-size: 1.125rem;
@@ -54,4 +55,113 @@
     .user-blurb {
       	font-size: 1rem;
     }
+}
+
+.masonry-wrapper {
+  padding: 0 0.5em;
+}
+.posts-even, .posts-odd {
+  width: 50%;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+.posts-even {
+  left: -0.5em;
+}
+.posts-odd {
+  left: 0.5em;
+}
+
+post {
+  $post-image-size: 12em;
+  margin-bottom: 1em;
+  display: block;
+  border: 0.08em solid darken($bg-light, 18%);
+  .post-overlay {
+    height: $post-image-size;
+    width: 100%;
+    position: relative;
+    margin-top: -1 * $post-image-size;
+    background: rgba($bg-dark, 0.7);
+    opacity: 0;
+    @include transition( all 0.3s $ease-in-out-quad );
+  }
+  .image-wrapper {
+    width: 100%;
+    height: $post-image-size;
+    border-bottom: 0.16em solid $emphasis;
+    overflow: hidden;
+  }
+  .post-image {
+    height: $post-image-size;
+    width: 100%;
+    @include transition( all 0.7s $ease-out-back );
+    @include transform( scale(1.01, 1.01) );
+    &.hover {
+      @include transform( scale(1.03, 1.03) );
+    }
+  }
+  .post-titles {
+    text-align: center;
+    position: relative;
+    margin-top: -2/3 * $post-image-size;
+  }
+  .post-type {
+    width: 100%;
+    margin-top: 0;
+    overflow: hidden;
+    height: 0;
+    @include transition( all 0.5s $ease-in-out-back, opacity 0.5s $ease-in-out-quad );
+    opacity: 0;
+    &.reveal {
+      height: 2.5em;
+      margin-top: 0.5em;
+      opacity: 1;
+    }
+  }
+  .post-reveal {
+    display: inline-block;
+  }
+  @include nav-btn-size(2.5em);
+  .user-wrapper {
+    text-align: center;
+  }
+  user-image {
+    position: relative;
+    top: -1.33em;
+    display: inline-block;
+    @include user-image-size(2.5em);
+  }
+  letter-spacing: 0.01em;
+  line-height: 1.5em;
+  font-size: 1.125rem;
+  h2 {
+    font-size: 1.5em;
+    font-family: 'Novecento';
+    a {
+      color: $bg-dark;
+      &:hover {
+        color: darken($bg-light, 32%);
+      }
+    }
+    span {
+      font-family: 'Droid';
+      a {
+        font-size: 0.8em;
+      }
+    }
+  }
+  h4 {
+    font-size: 1rem;
+    font-family: 'Novecento';
+  }
+  p {
+    margin: 1em 0 0.5em;
+  }
+  .post-info {
+    margin-top: -2em;
+    //font-family: 'Droid';
+    padding: 1.5em;
+  }
 }

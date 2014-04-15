@@ -1,0 +1,9 @@
+.film-image
+.film-overlay
+.film-titles
+	h2 {{film.title}}
+	h4 {{film.user.name}}
+	.film-btns
+		nav-btn item="film" ng-click="action()"
+		a ng-href="/#/blog/view/{{film.id}}"
+			nav-btn item="blog"

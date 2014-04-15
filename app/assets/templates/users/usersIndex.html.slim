@@ -1,18 +1,12 @@
 nav-bar
 #base.container
-  	header-bar.single-title kind="single" image="assets/creators.jpg"
-    	h2 Creators
+  	header-bar.single-title kind="single" image="assets/creators.jpg" user="user"
+      h2 Creators
+      btn-line.not-end link="/auth/google?origin=login" ng-if="user == 'null'" Log In
+      btn-line link="/auth/google?origin=signup" ng-if="user == 'null'" Sign Up
+      btn-line link="/logout" ng-if="user != 'null'" Log Out
   	.content
-  		.creators-title
-  			.creators-info
-  				h2 ng-if="user == 'null'" Our Filmmakers
-  				a ng-href="/#/creators/view/{{user.id}}" ng-if="user != 'null'"
-  					h2 {{user.name}}
-  			.creators-auth
-  				a ng-href="/auth/google?origin=login" ng-if="user == 'null'" Log In
-  				a ng-href="/auth/google?origin=signup" ng-if="user == 'null'" Sign Up
-  				a ng-href="/logout" ng-if="user != 'null'" Log Out
-  		.creator-content.title-content.row
+  		.creator-content.row
   			.creator.col-xs-6.col-md-4 ng-repeat="creator in creators" ng-if="creator.approved || user.admin"
 					user-image.hover user="creator"
 					.user-info

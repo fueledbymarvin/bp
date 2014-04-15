@@ -1,5 +1,8 @@
 .user-content {
-	padding-bottom: 2em;
+	padding-bottom: 3em;
+	.user-title {
+		margin-top: 2em;
+	}
 }
 
 .permissions, .check {
@@ -10,8 +13,6 @@
 }
 
 .creator-content {
-	clear: both;
-	margin: 1em 0 2em;
 	.creator {
 		margin: 3em 0 2em;
 		user-image {
@@ -38,49 +39,22 @@
 	}
 }
 
-.creators-title {
-	width: 100%;
-	float: left;
-	border-bottom: 0.08em solid darken($bg-light, 18%);
-	margin-bottom: 1em;
-	font-family: 'Novecento';
-	color: darken($bg-light, 32%);
-	a {
-		display: inline-block;
-		color: darken($bg-light, 32%);
-		@include transition( all 0.2s );
-		&:hover {
-			color: $bg-dark;
-		}
-	}
-	.creators-info {
-		float: left;
-		font-size: 2em;
-		margin-top: -0.2em;
-	}
-	.creators-auth {
-		float: right;
-		a {
-			padding: 0.5em;
-		}
-	}
-}
-
 .work-wrapper {
+	$work-size: 12em;
 	text-align: center;
 	work {
 		width: 100%;
-		height: 10em;
+		height: $work-size;
 		display: block;
 		overflow: hidden;
 	}
 	a {
 		width: 100%;
-		height: 10em;
+		height: $work-size;
 		display: block;
 	}
 	.work-image {
-		height: 10em;
+		height: $work-size;
 		width: 100%;
 		@include transition( all 0.7s $ease-out-back );
 		@include transform( scale(1.01, 1.01) );
@@ -90,28 +64,51 @@
 	}
 	.work-overlay {
 		width: 100%;
-		height: 10em;
+		height: $work-size;
 		position: relative;
-		margin-top: -10em;
+		margin-top: -1 * $work-size;
 		background: rgba($bg-dark, 0.7);
 		opacity: 0;
-		@include transition( all 0.2s $ease-in-out-quad );
+		@include transition( all 0.3s $ease-in-out-quad );
 	}
 	.work-titles {
 		color: $bg-light;
 		position: relative;
-		margin-top: -10em;
+		margin-top: -1 * $work-size;
 		@include center-vert;
+		padding: 2em;
+	}
+	.work-type {
+		margin-top: 0;
+		overflow: hidden;
+		height: 0;
+		@include transition( all 0.5s $ease-in-out-back, opacity 0.5s $ease-in-out-quad );
+		opacity: 0;
+		&.reveal {
+			height: 2.5em;
+			margin-top: 0.5em;
+			opacity: 1;
+		}
+	}
+	.work-reveal {
+		display: inline-block;
 	}
 	h2 {
     	font-family: 'Novecento';
     	font-size: 1.5em;
         letter-spacing: 0.1em;
     }
-    h3 {
+    h4 {
         font-family: 'Droid';
         font-size: 1em;
         font-style: italic;
-        margin-top: 0.5em;
 	}
+	img {
+		padding: 0;
+		border: none;
+		border-radius: 0;
+		width: auto;
+		background: none;
+	}
+	@include nav-btn-size(2.5em);
 }

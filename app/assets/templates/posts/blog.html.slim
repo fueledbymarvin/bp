@@ -1,0 +1,20 @@
+#base.container
+  nav-bar
+  header-bar.single-title kind="single" image="assets/blog.jpg"
+    h2 Our Blog
+  .content
+    .visible-xs
+      .posts
+        span ng-repeat="post in posts"
+          post post="post"
+    .hidden-xs.masonry-wrapper
+      .masonry
+        .posts-even
+          span ng-repeat="post in posts"
+            span ng-if="$even"
+              post post="post"
+        .posts-odd
+          span ng-repeat="post in posts"
+            span ng-if="$odd"
+              post post="post"
+footer

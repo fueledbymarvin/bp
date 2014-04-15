@@ -1,0 +1,21 @@
+.image-wrapper
+	a ng-href="/#/blog/view/{{post.id}}"
+		.post-image
+		.post-overlay
+		.post-titles
+			.post-type
+				.post-reveal ng-if="post.video"
+					nav-btn item="film"
+				.post-reveal ng-if="!post.video"
+					nav-btn item="blog"
+.user-wrapper
+	user-image user="post.user"
+.post-info
+	h2
+		a ng-href="/#/blog/view/{{post.id}}" {{post.title}} 
+		span
+			'// 
+			a ng-href="/#/creators/view/{{post.user.id}}" {{post.user.name}}
+	h4 {{dateParser(post.created_at)}}
+	p {{blurb(post.content)}}
+	a.more ng-href="/#/blog/view/{{post.id}}" Read more

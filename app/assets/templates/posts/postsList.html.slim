@@ -1,7 +1,0 @@
-h3 Blog
-#posts
-  .post ng-repeat="post in posts"
-    .title
-      a href="/#/view/{{post.id}}" {{post.title}} | {{post.author}}
-    .content bind-html-unsafe="post.content|markdown"
-footer

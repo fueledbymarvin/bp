@@ -9,6 +9,12 @@ postsApp.config(['$routeProvider', ($routeProvider) ->
       films: (FilmsListLoader) ->
         return FilmsListLoader()
     templateUrl: '/assets/films.html'
+  ).when('/blog',
+    controller: 'PostsListCtrl'
+    resolve:
+      posts: (PostsListLoader) ->
+        return PostsListLoader()
+    templateUrl: '/assets/blog.html'
   ).when('/blog/edit/:postId',
     controller: 'PostsEditCtrl'
     resolve:
@@ -73,12 +79,18 @@ postsApp.config(['$httpProvider', ($httpProvider) ->
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
 ])
 
-postsApp.controller('PostsListCtrl', ['$scop  $scope.user = usere', 'posts', ($scope, posts) ->
+postsApp.controller('PostsListCtrl', ['$scope', 'posts', ($scope, posts) ->
   $scope.posts = posts
 ])
 
-postsApp.controller('FilmsListCtrl', ['$scope', 'films', ($scope, films) ->
+postsApp.controller('FilmsListCtrl', ['$scope', 'films', 'ContentParser', ($scope, films, ContentParser) ->
   $scope.films = films
+
+  $scope.changeVideo = (url) ->
+    $scope.video = ContentParser.parseVimeo(url)
+    ContentParser.toggleVideo()
+
+  $scope.toggleVideo = ContentParser.toggleVideo
 ])
 
 postsApp.controller('PostsViewCtrl', ['$scope', '$location', 'post', 'ContentParser', 'user', ($scope, $location, post, ContentParser, user) ->
@@ -156,7 +168,6 @@ postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentPars
 
 postsApp.controller('UsersCtrl', ['$scope', 'user', 'creators', ($scope, user, creators) ->
   $scope.user = user
-  console.log creators
   $scope.creators = creators
 ])
 

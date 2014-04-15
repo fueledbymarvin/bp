@@ -6,21 +6,22 @@ nav-bar
   		btn-line link="mailto:{{user.email}}" Contact
 	.content
 		.user-content
-			.title about
+			.title ABOUT
 			.title-content
 				.post-content bind-html-unsafe="user.blurb|markdown"
 				p
 					'Want to make films with {{user.name}}? Send an email to 
 					a ng=href="mailto:{{user.email}}" {{user.email}}
 					'.
-			.title work
-			.title-content
+			.title WORK
+			.title-content.user-title
 				.work-wrapper ng-repeat="post in user.posts"
 					work image="{{post.image}}" date="{{dateParser(post.created_at)}}" post="post"
-		.btns-wrap ng-show="match"
-			.btns
-				btn-line.not-end.inverted link="/#/films/new" New Film
-				btn-line.not-end.inverted link="/#/blog/new" New Post
-				btn-line.inverted.not-end link="/#/creators/edit/{{user.id}}" Edit Profile
-				btn-line.inverted link="/logout" Logout
+			p ng-if="user.posts.length == 0" Oh no! Looks like {{user.name}} has yet to post anything.
+			.btns-wrap ng-show="match"
+				.btns
+					btn-line.not-end.inverted link="/#/films/new" New Film
+					btn-line.not-end.inverted link="/#/blog/new" New Post
+					btn-line.inverted.not-end link="/#/creators/edit/{{user.id}}" Edit Profile
+					btn-line.inverted link="/logout" Logout
 footer

@@ -188,21 +188,6 @@ postsDirectives.directive('videoOverlay', ['$sce', ($sce) ->
   }
 ])
 
-postsDirectives.directive('film', ->
-  return {
-    restrict: 'E'
-    scope:
-      film: "="
-    templateUrl: 'assets/film.html'
-    link: (scope, element, attrs) ->
-      element.css
-        backgroundImage: "url('" + scope.film.image + "')"
-        backgroundSize: "cover"
-        backgroundPosition: "center center"
-        backgroundRepeat: "no-repeat"
-  }
-)
-
 postsDirectives.directive('footer', ->
   return {
     restrict: 'E'
@@ -233,11 +218,13 @@ postsDirectives.directive('work', ->
           element.find('.work-image').addClass "hover"
           element.find('.work-overlay').css
             opacity: 1
+          element.find('.work-type').addClass "reveal"
       ,
         ->
           element.find('.work-image').removeClass "hover"
           element.find('.work-overlay').css
             opacity: 0
+          element.find('.work-type').removeClass "reveal"
       )
   }
 )
@@ -248,5 +235,92 @@ postsDirectives.directive('userImage', ->
     scope:
       user: "="
     templateUrl: 'assets/userImage.html'
+  }
+)
+
+postsDirectives.directive('post', ['ContentParser', ($ContentParser) ->
+  return {
+    restrict: 'E'
+    scope:
+      post: "="
+    templateUrl: 'assets/post.html'
+    link: (scope, element, attrs) ->
+      scope.dateParser = (date) ->
+        ContentParser.parseDate(new Date(date))
+      scope.blurb = (text) ->
+        ContentParser.getBlurb(text)
+
+      updateImage = () ->
+        if scope.post.image
+          element.find('.post-image').css
+            backgroundImage: "url('" + scope.post.image + "')"
+            backgroundSize: "cover"
+            backgroundPosition: "center center"
+            backgroundRepeat: "no-repeat"
+      updateImage()
+
+      element.find('.image-wrapper').hover(
+        ->
+          element.find('.post-image').addClass "hover"
+          element.find('.post-overlay').css
+            opacity: 1
+          element.find('.post-type').addClass "reveal"
+      ,
+        ->
+          element.find('.post-image').removeClass "hover"
+          element.find('.post-overlay').css
+            opacity: 0
+          element.find('.post-type').removeClass "reveal"
+      )
+  }
+])
+
+postsDirectives.directive('film', ->
+  return {
+    restrict: 'E'
+    scope:
+      film: "="
+      action: "&"
+    templateUrl: 'assets/film.html'
+    link: (scope, element, attrs) ->
+      updateHeight = () ->
+        w = element.width()
+        element.css
+          height: w
+        $('.films-wrapper').css
+          marginTop: $('header-bar').outerHeight()
+        element.find('.film-image').css
+          height: w
+        element.find('.film-overlay').css
+          height: w
+          marginTop: -w
+        element.find('.film-titles').css
+          marginTop: -w
+      updateHeight()
+      $(window).resize ->
+        updateHeight()
+
+      updateImage = () ->
+        if scope.film.image
+          element.find('.film-image').css
+            backgroundImage: "url('" + scope.film.image + "')"
+            backgroundSize: "cover"
+            backgroundPosition: "center center"
+            backgroundRepeat: "no-repeat"
+      updateImage()
+
+      element.hover(
+        ->
+          element.find('.film-image').addClass "hover"
+          element.find('.film-overlay').css
+            opacity: 1
+          element.find('.film-btns').addClass "reveal"
+      ,
+        ->
+          element.find('.film-image').removeClass "hover"
+          element.find('.film-overlay').css
+            opacity: 0
+          element.find('.film-btns').removeClass "reveal"
+      )
   }
 )

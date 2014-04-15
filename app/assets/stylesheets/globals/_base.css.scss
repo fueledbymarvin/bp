@@ -3,25 +3,26 @@
 }
 
 footer {
-  //height: 4em;
   background: $bg-dark;
   font-size: 0.75em;
   p {
     font-family: 'Novecento';
     display: inline-block;
     color: darken($bg-light, 32%);
-    margin-top: 1.5em;
+    margin-top: 1.75em;
     letter-spacing: 0.16em;
+    span {
+      font-family: 'Droid';
+    }
   }
   a.email {
+    font-size: 0.8em;
     font-family: 'Droid';
     display: inline-block;
     color: darken($bg-light, 32%);
     &:hover {
       color: darken($bg-light, 18%);
     }
-    margin-top: 1.5em;
-    margin-left: 3em;
   }
   .fbm {
     float: right;
@@ -112,15 +113,23 @@ footer {
     padding-bottom: 2em;
   }
   .title {
+    margin-left: 0.05em;
+    letter-spacing: 0.1em;
+    text-align: center;
     font-family: 'Novecento';
-    margin-bottom: 0.5em;
     font-size: 2em;
-    color: darken($bg-light, 32%);
-    line-height: 1.2em;
-    border-bottom: 0.08rem solid darken($bg-light, 18%);
+    color: darken($bg-light, 18%);
+    &:after {
+      content: "";
+      border-bottom: 0.08rem solid darken($bg-light, 18%);
+      width: 3em;
+      display: block;
+      @include center-horz;
+      margin: 0.4em 0 0.8em -0.05em;
+    }
   }
   .title-content {
-    padding: 0 0.5em;
+    margin-bottom: 3em;
   }
   .btns-wrap {
     width: 100%;
@@ -141,7 +150,7 @@ footer {
   }
 
   btn-line.not-end {
-    margin-right: 0.3em;
+    margin-right: 0.5em;
   }
 }
 

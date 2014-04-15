@@ -25,3 +25,35 @@ $emphasis: #87D69B; //#AAE3AB
 	  	margin: -0.21 * $size;
 	}
 }
+
+@mixin nav-btn-size($size) {
+	nav-btn {
+	  	width: $size;
+	  	height: $size;
+	  	.nav-d-hover, .nav-d-normal {
+	    	width: $size;
+	    	height: $size;
+	    	img {
+	      		width: $size;
+	      		height: $size;
+	    	}
+	  	}
+	  	.nav-d-hover {
+	    	margin-top: -$size;
+	    	margin-left: $size;
+	    	img {
+		    	left: -$size;
+	    	}
+	  	}
+		.nav-d-hover.reveal {
+			margin-left: 0;
+			img {
+			  	left: 0;
+			}
+		}
+		.nav-d-normal.reveal {
+			width: 0;
+			left: 0;
+		}
+	}
+}
