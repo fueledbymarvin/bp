@@ -9,6 +9,9 @@
         input.checkbox-inline type="checkbox" ng-model="user.approved" Approved
         br
         input.checkbox-inline type="checkbox" ng-model="user.admin" Admin
+      .form-group ng-show="user.admin"
+        label for="inputPosition" Position
+        input.form-control type="text" ng-model="user.position"
       .form-group
         label for="year" College and Year
         .form-inline

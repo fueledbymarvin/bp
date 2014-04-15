@@ -1,0 +1,18 @@
+nav-bar
+#base.container
+	header-bar.single-title kind="single" image="assets/about.jpg" user="user"
+  		h2 About
+  		btn-line link="mailto:info@bulldog-productions.com" Contact Us
+	.content
+		.user-content
+			.title THE ORGANIZATION
+			.title-content
+				p Yale's oldest undergraduate film production house.
+		.title THE TEAM
+		.title-content.user-title
+			.board-wrapper ng-repeat="admin in admins"
+				span ng-if="$even"
+					board user="admin" side="left"
+				span ng-if="$odd"
+					board user="admin" side="right"
+footer

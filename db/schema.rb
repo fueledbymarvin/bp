@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320105717) do
+ActiveRecord::Schema.define(version: 20140415210200) do
 
   create_table "posts", force: true do |t|
     t.text     "content"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140320105717) do
     t.string   "gid"
     t.boolean  "admin"
     t.boolean  "approved"
+    t.string   "position"
   end
 
 end

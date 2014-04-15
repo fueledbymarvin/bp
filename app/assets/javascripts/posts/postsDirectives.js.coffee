@@ -324,3 +324,40 @@ postsDirectives.directive('film', ->
       )
   }
 )
+
+postsDirectives.directive('board', ->
+  return {
+    restrict: 'E'
+    scope:
+      user: "="
+      side: "@"
+    templateUrl: 'assets/board.html'
+    link: (scope, element, attrs) ->
+      updateHeight = () ->
+        w = element.find('.board-block').width()
+        element.find('.board-block').css
+          height: w
+        element.find('.board-image').css
+          height: w
+      updateHeight()
+      $(window).resize ->
+        updateHeight()
+
+      updateImage = () ->
+        if scope.user.image
+          element.find('.board-image').css
+            backgroundImage: "url('" + scope.user.image + "')"
+            backgroundSize: "cover"
+            backgroundPosition: "center center"
+            backgroundRepeat: "no-repeat"
+      updateImage()
+
+      element.hover(
+        ->
+          element.find('.board-image').addClass "hover"
+      ,
+        ->
+          element.find('.board-image').removeClass "hover"
+      )
+  }
+)

@@ -1,8 +1,5 @@
 .user-content {
 	padding-bottom: 3em;
-	.user-title {
-		margin-top: 2em;
-	}
 }
 
 .permissions, .check {
@@ -37,6 +34,10 @@
 			font-style: italic;
 		}
 	}
+}
+
+.user-title {
+	margin-top: 2em;
 }
 
 .work-wrapper {
@@ -79,14 +80,14 @@
 		padding: 2em;
 	}
 	.work-type {
-		margin-top: 0;
+		margin-top: 0.5em;
 		overflow: hidden;
 		height: 0;
 		@include transition( all 0.5s $ease-in-out-back, opacity 0.5s $ease-in-out-quad );
 		opacity: 0;
 		&.reveal {
 			height: 2.5em;
-			margin-top: 0.5em;
+			margin-top: 1em;
 			opacity: 1;
 		}
 	}
@@ -94,21 +95,15 @@
 		display: inline-block;
 	}
 	h2 {
-    	font-family: 'Novecento';
-    	font-size: 1.5em;
-        letter-spacing: 0.1em;
-    }
-    h4 {
-        font-family: 'Droid';
-        font-size: 1em;
-        font-style: italic;
+		font-family: 'Novecento';
+		font-size: 1.6em;
+		letter-spacing: 0.1em;
 	}
-	img {
-		padding: 0;
-		border: none;
-		border-radius: 0;
-		width: auto;
-		background: none;
+	h4 {
+		font-family: 'Droid';
+		margin-top: 0.5em;
+		font-size: 1em;
+		font-style: italic;
 	}
 	@include nav-btn-size(2.5em);
 }

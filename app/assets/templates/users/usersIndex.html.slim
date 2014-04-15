@@ -4,6 +4,7 @@ nav-bar
       h2 Creators
       btn-line.not-end link="/auth/google?origin=login" ng-if="user == 'null'" Log In
       btn-line link="/auth/google?origin=signup" ng-if="user == 'null'" Sign Up
+      btn-line.not-end link="/#/creators/view/{{user.id}}" ng-if="user != 'null'" My Profile
       btn-line link="/logout" ng-if="user != 'null'" Log Out
   	.content
   		.creator-content.row

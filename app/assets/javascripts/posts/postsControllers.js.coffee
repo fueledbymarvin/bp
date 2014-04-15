@@ -67,6 +67,14 @@ postsApp.config(['$routeProvider', ($routeProvider) ->
       currentUser: (AuthService) ->
         return AuthService.currentUser()
     templateUrl: '/assets/usersForm.html'
+  ).when('/about',
+    controller: 'AboutCtrl'
+    resolve:
+      user: (AuthService) ->
+        return AuthService.currentUser()
+      creators: (UsersListLoader) ->
+        return UsersListLoader()
+    templateUrl: '/assets/about.html'
   ).otherwise(
     redirectTo: '/'
   )
@@ -220,4 +228,13 @@ postsApp.controller('UsersEditCtrl', ['$scope', '$location', 'user', 'currentUse
       $location.path("/")
       delete $scope.user
       # add failure callback
+])
+
+postsApp.controller('AboutCtrl', ['$scope', 'user', 'creators', ($scope, user, creators) ->
+  $scope.user = user
+  admins = []
+  for creator in creators
+    if creator.admin
+      admins.push creator
+  $scope.admins = admins
 ])

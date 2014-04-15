@@ -1,0 +1,17 @@
+span ng-if="side == 'right'"
+	.board-block
+		.board-titles
+			.title {{user.position | uppercase}}
+			.title-content
+				h2 {{user.name}}
+				h4 {{user.year}}
+.board-block
+	a ng-href="/#/creators/view/{{user.id}}"
+		.board-image
+span ng-if="side == 'left'"
+	.board-block
+		.board-titles
+			.title {{user.position | uppercase}}
+			.title-content
+				h2 {{user.name}}
+				h4 {{user.year}}

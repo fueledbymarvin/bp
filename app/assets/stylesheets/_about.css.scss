@@ -1,0 +1,38 @@
+board {
+  .board-block {
+    text-align: center;
+    width: 50%;
+    height: 20em;
+    display: inline-block;
+    overflow: hidden;
+  }
+  .board-image {
+    width: 100%;
+    height: 20em;
+    @include transition( all 0.7s $ease-out-back );
+    @include transform( scale(1.01, 1.01) );
+    &.hover {
+      @include transform( scale(1.03, 1.03) );
+    }
+  }
+  .board-titles {
+    @include center-vert;
+  }
+  .title {
+    font-size: 1.6em !important;
+    &:after {
+      width: 2em !important;
+    }
+  }
+  h2 {
+    font-family: 'Novecento';
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
+  }
+  h4 {
+    font-family: 'Droid';
+    margin-top: 0.5em;
+    font-size: 1em;
+    font-style: italic;
+  }
+}
