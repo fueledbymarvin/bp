@@ -99,6 +99,27 @@ postsApp.controller('FilmsListCtrl', ['$scope', 'films', 'ContentParser', ($scop
     ContentParser.toggleVideo()
 
   $scope.toggleVideo = ContentParser.toggleVideo
+
+  updateHeight = () ->
+    element = $('header-bar')
+    newHeight = $(window).height() - 142
+    element.css
+      height: newHeight + "px"
+    if newHeight < 480
+      element.find(".user").css
+        top: "480px"
+      element.parent().find(".content").css
+        marginTop: "480px"
+    else
+      element.find(".user").css
+        top: newHeight + "px"
+      element.parent().find(".content").css
+        marginTop: newHeight + "px"
+    $('.films-wrapper').css
+      marginTop: $('header-bar').outerHeight()
+  updateHeight()
+  $(window).resize ->
+    updateHeight()
 ])
 
 postsApp.controller('PostsViewCtrl', ['$scope', '$location', 'post', 'ContentParser', 'user', ($scope, $location, post, ContentParser, user) ->

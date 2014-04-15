@@ -238,7 +238,7 @@ postsDirectives.directive('userImage', ->
   }
 )
 
-postsDirectives.directive('post', ['ContentParser', ($ContentParser) ->
+postsDirectives.directive('post', ['ContentParser', (ContentParser) ->
   return {
     restrict: 'E'
     scope:
@@ -287,8 +287,6 @@ postsDirectives.directive('film', ->
         w = element.width()
         element.css
           height: w
-        $('.films-wrapper').css
-          marginTop: $('header-bar').outerHeight()
         element.find('.film-image').css
           height: w
         element.find('.film-overlay').css

@@ -1,4 +1,4 @@
-span ng-if="side == 'right'"
+span ng-show="side == 'right'"
 	.board-block
 		.board-titles
 			.title {{user.position | uppercase}}
@@ -8,7 +8,7 @@ span ng-if="side == 'right'"
 .board-block
 	a ng-href="/#/creators/view/{{user.id}}"
 		.board-image
-span ng-if="side == 'left'"
+span ng-show="side == 'left'"
 	.board-block
 		.board-titles
 			.title {{user.position | uppercase}}
