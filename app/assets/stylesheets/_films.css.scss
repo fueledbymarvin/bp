@@ -38,6 +38,7 @@ video-overlay {
 }
 
 .films-wrapper {
+  margin-top: $header-height;
   film {
     width: 33.3333333333333%;
     @media only screen and (max-width: $screen-md-min) {

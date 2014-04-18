@@ -109,24 +109,6 @@ postsDirectives.directive('headerBar', ->
       scope.$watch("image", ->
         updateImage()
       )
-
-      updateHeight = () ->
-        newHeight = $(window).height() - 142
-        element.css
-          height: newHeight + "px"
-        if newHeight < 480
-          element.find(".user").css
-            top: "480px"
-          element.parent().find(".content").css
-            marginTop: "480px"
-        else
-          element.find(".user").css
-            top: newHeight + "px"
-          element.parent().find(".content").css
-            marginTop: newHeight + "px"
-      updateHeight()
-      $(window).resize ->
-        updateHeight()
   }
 )
 

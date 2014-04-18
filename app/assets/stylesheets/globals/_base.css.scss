@@ -35,15 +35,12 @@ footer {
 }
 
 #base {
-  $header-height: 30em;
-
   header-bar {
     padding-top: 3em;
     position: absolute;
     width: 100%;
     left: 0;
     border-bottom: 0.16em solid $emphasis;
-    min-height: 30em;
     height: $header-height;
     color: $bg-light;
     font-family: 'Novecento';
