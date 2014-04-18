@@ -109,6 +109,16 @@ postsDirectives.directive('headerBar', ->
       scope.$watch("image", ->
         updateImage()
       )
+
+      fixBody = () ->
+        h = $(window).height() - 640
+
+        if $('.content').height() < h
+          $('.content').css
+            minHeight: h + "px"
+      fixBody()
+      $(window).resize ->
+        fixBody()
   }
 )
 
