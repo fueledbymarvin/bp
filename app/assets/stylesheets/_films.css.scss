@@ -39,9 +39,11 @@ video-overlay {
 
 .films-wrapper {
   margin-top: $header-height;
+  $film-height: 24em;
   film {
+    height: $film-height;
     width: 33.3333333333333%;
-    @media only screen and (max-width: $screen-md-min) {
+    @media only screen and (max-width: $screen-lg-min) {
       width: 50%;
     }
     @media only screen and (max-width: $screen-sm-min) {
@@ -49,8 +51,10 @@ video-overlay {
     }
     display: inline-block;
     overflow: hidden;
+    margin-bottom: -0.2em;
   }
   .film-image {
+    height: $film-height;
     width: 100%;
     @include transition( all 0.7s $ease-out-back );
     @include transform( scale(1.01, 1.01) );
@@ -60,12 +64,15 @@ video-overlay {
   }
   .film-overlay {
     width: 100%;
+    height: $film-height;
+    margin-top: -1 * $film-height;
     position: relative;
     background: rgba($bg-dark, 0.7);
     opacity: 0;
     @include transition( all 0.3s $ease-in-out-quad );
   }
   .film-titles {
+    margin-top: -1 * $film-height;
     text-align: center;
     color: $bg-light;
     position: relative;

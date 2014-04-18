@@ -111,10 +111,13 @@ postsDirectives.directive('headerBar', ->
       )
 
       fixBody = () ->
-        h = $(window).height() - 640
+        h = $(window).height() - 640 - $('footer').outerHeight()
 
         if $('.content').height() < h
           $('.content').css
+            minHeight: h + "px"
+        if $('.films-wrapper').height() < h
+          $('.films-wrapper').css
             minHeight: h + "px"
       fixBody()
       $(window).resize ->
@@ -275,21 +278,6 @@ postsDirectives.directive('film', ->
       action: "&"
     templateUrl: 'assets/film.html'
     link: (scope, element, attrs) ->
-      updateHeight = () ->
-        w = element.width()
-        element.css
-          height: w
-        element.find('.film-image').css
-          height: w
-        element.find('.film-overlay').css
-          height: w
-          marginTop: -w
-        element.find('.film-titles').css
-          marginTop: -w
-      updateHeight()
-      $(window).resize ->
-        updateHeight()
-
       updateImage = () ->
         if scope.film.image
           element.find('.film-image').css
