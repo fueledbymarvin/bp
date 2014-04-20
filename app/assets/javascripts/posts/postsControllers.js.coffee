@@ -207,12 +207,7 @@ postsApp.controller('UsersEditCtrl', ['$scope', '$location', 'user', 'currentUse
     $scope.college = user.year.substring(0, user.year.indexOf("'") - 1)
     $scope.year = user.year.substring(user.year.indexOf("'") + 1)
 
-  if currentUser is "null" or currentUser.admin is false and user.id isnt currentUser.user_id
-    console.log currentUser
-    console.log user
-    console.log(currentUser is "null")
-    console.log(currentUser.admin is false)
-    console.log(currentUser.user_id isnt user.id)
+  if currentUser is "null" or currentUser.admin is false and user.id isnt currentUser.id
     $location.path "/"
     console.log "editing profile that's not yours"
 
