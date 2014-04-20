@@ -1,6 +1,6 @@
 span ng-if="type == 'film'"
   span ng-if="post.video"
-    video-overlay video="{{parseVimeo(post.video)}}" close="toggleVideo()"
+    video-overlay video="{{parseVideo(post.video)}}" close="toggleVideo()"
 
 #base.container
   nav-bar
@@ -19,7 +19,7 @@ span ng-if="type == 'film'"
         input.form-control type="text" ng-model="post.image" required=""
       span ng-if="type == 'film'"
         .form-group
-          label for="inputVideo" Vimeo Url
+          label for="inputVideo" Youtube Url
           input.form-control type="text" ng-model="post.video" required=""
       .form-group
         span ng-if="type == 'film'"

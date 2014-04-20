@@ -53,8 +53,10 @@ postsServices.factory "ContentParser", ["$sce", ($sce) ->
       $("video-overlay").toggleClass "reveal"
       return
 
-    parseVimeo: (url) ->
-      return $sce.trustAsResourceUrl('//player.vimeo.com/video/' + url.substr(url.lastIndexOf('/') + 1))
+    parseVideo: (url) ->
+      videoIdMatch = url.match(/watch?v=[a-zA-Z0-9]+/)[0]
+      videoId = videoIdMatch.substr(videoIdMatch.indexOf('=') + 1)
+      return $sce.trustAsResourceUrl('//www.youtube.com/embed/' + videoId)
 
     parseDate: (date) ->
       mo = date.getMonth()

@@ -95,7 +95,7 @@ postsApp.controller('FilmsListCtrl', ['$scope', 'films', 'ContentParser', ($scop
   $scope.films = films
 
   $scope.changeVideo = (url) ->
-    $scope.video = ContentParser.parseVimeo(url)
+    $scope.video = ContentParser.parseVideo(url)
     ContentParser.toggleVideo()
 
   $scope.toggleVideo = ContentParser.toggleVideo
@@ -114,8 +114,8 @@ postsApp.controller('PostsViewCtrl', ['$scope', '$location', 'post', 'ContentPar
 
   $scope.editable = user.admin is true or user.id is post.user_id
 
-  $scope.parseVimeo = (url) ->
-    return ContentParser.parseVimeo(url)
+  $scope.parseVideo = (url) ->
+    return ContentParser.parseVideo(url)
 
   $scope.edit = ->
     $location.path("/blog/edit/" + post.id)
@@ -137,8 +137,8 @@ postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentPar
 
   $scope.toggleVideo = ContentParser.toggleVideo
 
-  $scope.parseVimeo = (url) ->
-    return ContentParser.parseVimeo(url)
+  $scope.parseVideo = (url) ->
+    return ContentParser.parseVideo(url)
 
   $scope.save = ->
     $scope.post.$update ->
@@ -165,8 +165,8 @@ postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentPars
 
   $scope.toggleVideo = ContentParser.toggleVideo
 
-  $scope.parseVimeo = (url) ->
-    return ContentParser.parseVimeo(url)
+  $scope.parseVideo = (url) ->
+    return ContentParser.parseVideo(url)
 
   $scope.save = ->
     $scope.post.$save (post) ->
