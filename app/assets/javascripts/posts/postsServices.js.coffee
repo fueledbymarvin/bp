@@ -51,7 +51,7 @@ postsServices.factory "ContentParser", ["$sce", ($sce) ->
   return {
     toggleVideo: (url) ->
       $("video-overlay").toggleClass "reveal"
-      $("video-overlay").attr("ng-src", url)
+      $("iframe").attr("src", url)
       return
 
     parseVideo: (url) ->
