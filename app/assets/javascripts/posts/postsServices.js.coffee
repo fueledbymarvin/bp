@@ -54,8 +54,7 @@ postsServices.factory "ContentParser", ["$sce", ($sce) ->
       return
 
     parseVideo: (url) ->
-      videoIdMatch = url.match(/watch?v=[a-zA-Z0-9]+/)[0]
-      videoId = videoIdMatch.substr(videoIdMatch.indexOf('=') + 1)
+      videoId = url.substr(url.lastIndexOf('/') + 1)
       return $sce.trustAsResourceUrl('//www.youtube.com/embed/' + videoId)
 
     parseDate: (date) ->
