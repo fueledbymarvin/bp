@@ -1,6 +1,6 @@
 span ng-if="type == 'film'"
   span ng-if="post.video"
-    video-overlay video="{{parseVideo(post.video)}}" close="toggleVideo()"
+    video-overlay video="{{parseVideo(post.video)}}" close="toggleVideo("")"
 
 #base.container
   nav-bar
@@ -29,7 +29,7 @@ span ng-if="type == 'film'"
         textarea.form-control markdown-editor="" data-provide="markdown" ng-model="post.content" required="" rows="20"
       .form-group
         label Preview
-        header-bar image="{{post.image}}" post="post" type="{{type}}" action="toggleVideo()" user="user" date="{{date}}"
+        header-bar image="{{post.image}}" post="post" type="{{type}}" action="toggleVideo(parseVideo(post.video))" user="user" date="{{date}}"
         .content
           .post-content
             span ng-if="post.content"

@@ -96,7 +96,7 @@ postsApp.controller('FilmsListCtrl', ['$scope', 'films', 'ContentParser', ($scop
 
   $scope.changeVideo = (url) ->
     $scope.video = ContentParser.parseVideo(url)
-    ContentParser.toggleVideo()
+    ContentParser.toggleVideo($scope.video)
 
   $scope.toggleVideo = ContentParser.toggleVideo
 ])

@@ -49,8 +49,9 @@ postsServices.filter 'markdown', ->
 
 postsServices.factory "ContentParser", ["$sce", ($sce) ->
   return {
-    toggleVideo: ->
+    toggleVideo: (url) ->
       $("video-overlay").toggleClass "reveal"
+      $("video-overlay").attr("ng-src", url)
       return
 
     parseVideo: (url) ->

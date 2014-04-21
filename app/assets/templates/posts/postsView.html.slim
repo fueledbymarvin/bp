@@ -1,10 +1,10 @@
 span ng-if="type == 'film'"
   span ng-if="post.video"
-    video-overlay video="{{parseVideo(post.video)}}" close="toggleVideo()"
+    video-overlay video="{{parseVideo(post.video)}}" close="toggleVideo("")"
 
 nav-bar
 #base.container
-  	header-bar image="{{post.image}}" post="post" type="{{type}}" action="toggleVideo()" user="post.user" date="{{date}}"
+  	header-bar image="{{post.image}}" post="post" type="{{type}}" action="toggleVideo(parseVideo(post.video))" user="post.user" date="{{date}}"
 	.content
 	  	.post-content
 		    span ng-if="post.content"
