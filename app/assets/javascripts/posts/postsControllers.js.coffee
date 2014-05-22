@@ -150,6 +150,7 @@ postsApp.controller('PostsEditCtrl', ['$scope', '$location', 'post', 'ContentPar
       $location.path("/creators/view/" + user.id)
       delete $scope.post
       # add failure callback
+
 ])
 
 postsApp.controller('PostsNewCtrl', ['$scope', '$location', 'Post', 'ContentParser', 'user', 'AuthService', ($scope, $location, Post, ContentParser, user, AuthService) ->

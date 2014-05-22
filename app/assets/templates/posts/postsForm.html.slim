@@ -33,7 +33,7 @@ span ng-if="type == 'film'"
         .content
           .post-content
             span ng-if="post.content"
-              .post-content bind-html-unsafe="post.content|markdown"
+              .post-content bind-html-unsafe="" content="post.content|markdown"
       .form-group
         .btns-wrap
           .btns

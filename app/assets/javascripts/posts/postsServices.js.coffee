@@ -56,7 +56,7 @@ postsServices.factory "ContentParser", ["$sce", ($sce) ->
 
     parseVideo: (url) ->
       videoId = url.substr(url.lastIndexOf('/') + 1)
-      return $sce.trustAsResourceUrl('//www.youtube.com/embed/' + videoId)
+      return $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + videoId)
 
     parseDate: (date) ->
       mo = date.getMonth()
@@ -68,7 +68,7 @@ postsServices.factory "ContentParser", ["$sce", ($sce) ->
     getBlurb: (text) ->
       converter = new Showdown.converter()
       cleaned = converter.makeHtml(text).replace(/(<([^>]+)>)/ig,"")
-      cleaned.substring(0, cleaned.indexOf('\n'))
+      return cleaned.substring(0, cleaned.indexOf('\n'))
   }
 ]
 

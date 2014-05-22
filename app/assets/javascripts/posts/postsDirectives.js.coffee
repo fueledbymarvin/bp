@@ -1,18 +1,20 @@
 postsDirectives = angular.module('posts.directives', [])
 
 postsDirectives.directive('bindHtmlUnsafe', ['$compile', ($compile) ->
-  return ($scope, $element, $attrs) ->
-    compile = (newHTML) ->
-      newHTML = $compile(newHTML)($scope)
-      $element.html('').append(newHTML)
+  return {
+    scope:
+      content: '='
+    link: (scope, element, attrs) ->
+      rerender = (newContent) ->
+        element.empty()
+        element.append($compile(newContent)(scope))
 
-    htmlName = $attrs.bindHtmlUnsafe
-
-    $scope.$watch(htmlName, (newHTML) ->
-      if not newHTML
-        return
-      compile(newHTML)
-    )
+      rerender(scope.content)
+      
+      scope.$watch('content', (newContent) ->
+        rerender(newContent)
+      )
+  }        
 ])
 
 postsDirectives.directive('loading', ['$rootScope', ($rootScope) ->
@@ -312,7 +314,7 @@ postsDirectives.directive('board', ->
     templateUrl: 'assets/board.html'
     link: (scope, element, attrs) ->
       updateHeight = () ->
-        w = element.find('.board-block').width()
+        w = element.width() / 2
         element.find('.board-block').css
           height: w
         element.find('.board-image').css

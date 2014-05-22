@@ -8,7 +8,7 @@ nav-bar
 	.content
 	  	.post-content
 		    span ng-if="post.content"
-		      .post-content bind-html-unsafe="post.content|markdown"
+		      .post-content bind-html-unsafe="" content="post.content|markdown"
 		    .post-footer
 		    	.underline
 		        p.written written by
@@ -16,7 +16,7 @@ nav-bar
 		        .user-info
 		        	a href="/#/creators/view/{{post.user.id}}"
 			        	.user-name {{post.user.name}}
-			        .user-blurb bind-html-unsafe="post.user.blurb|markdown"
+			        .user-blurb bind-html-unsafe="" content="post.user.blurb|markdown"
 		.btns-wrap ng-show="editable"
 			.btns
 				btn-line.inverted ng-click="edit()" Edit
