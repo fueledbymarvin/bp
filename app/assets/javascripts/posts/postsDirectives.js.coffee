@@ -121,7 +121,7 @@ postsDirectives.directive('headerBar', ->
         if $('.films-wrapper').height() < h
           $('.films-wrapper').css
             minHeight: h + "px"
-      fixBody()
+      setTimeout(fixBody, 100)
       $(window).resize ->
         fixBody()
   }
