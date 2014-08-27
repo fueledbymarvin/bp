@@ -239,8 +239,10 @@ postsApp.controller('AboutCtrl', ['$scope', 'user', 'creators', ($scope, user, c
       admins.push creator
   ordered = []
   positions = ["President", "Vice President", "Special Events Coordinator", "Social Media Coordinator", "Webmaster", "Technical Director", "Treasurer"]
+  console.log admins
   for position in positions
     for admin, i in admins
+      console.log admin
       if admin.position is position
         ordered.push admin
         admins.splice(i, i+1)
