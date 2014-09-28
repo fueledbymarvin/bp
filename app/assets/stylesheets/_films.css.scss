@@ -38,6 +38,7 @@ video-overlay {
 }
 
 .films-wrapper {
+  background: #333333;
   $film-height: 24em;
   film {
     height: $film-height;
@@ -50,7 +51,6 @@ video-overlay {
     }
     display: inline-block;
     overflow: hidden;
-    margin-bottom: -0.2em;
   }
   .film-image {
     height: $film-height;

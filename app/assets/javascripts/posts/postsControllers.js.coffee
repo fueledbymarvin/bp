@@ -244,7 +244,7 @@ postsApp.controller('AboutCtrl', ['$scope', 'user', 'creators', ($scope, user, c
     if creator.admin
       admins.push creator
   ordered = []
-  positions = ["President", "Vice President", "Special Events Coordinator", "Social Media Coordinator", "Webmaster", "Technical Director", "Treasurer"]
+  positions = ["President", "Vice President", "Special Events Coordinator", "Social Media Coordinator", "Treasurer", "Technical Director", "Webmaster"]
   for position in positions
     for admin in admins
       if admin and admin.position is position
