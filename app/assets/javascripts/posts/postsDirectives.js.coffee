@@ -97,6 +97,7 @@ postsDirectives.directive('headerBar', ->
       type: "@"
       action: "&"
       date: "@"
+      films: "@"
     templateUrl: 'assets/headerBar.html'
     transclude: true
     link: (scope, element, attrs) ->
@@ -121,9 +122,10 @@ postsDirectives.directive('headerBar', ->
         if $('.films-wrapper').height() < h
           $('.films-wrapper').css
             minHeight: h + "px"
-      setTimeout(fixBody, 100)
-      $(window).resize ->
-        fixBody()
+      if scope.films isnt "true"
+        setTimeout(fixBody, 100)
+        $(window).resize ->
+          fixBody()
   }
 )
 
