@@ -87,6 +87,12 @@ postsApp.config(['$httpProvider', ($httpProvider) ->
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
 ])
 
+postsApp.controller 'AppCtrl', ['$scope', '$rootScope', ($scope, $rootScope) ->
+  $rootScope.$on("$routeChangeStart", ->
+    window.scrollTo(0,0)
+  )
+]
+
 postsApp.controller('PostsListCtrl', ['$scope', 'posts', ($scope, posts) ->
   $scope.posts = posts
 ])
@@ -240,12 +246,8 @@ postsApp.controller('AboutCtrl', ['$scope', 'user', 'creators', ($scope, user, c
   ordered = []
   positions = ["President", "Vice President", "Special Events Coordinator", "Social Media Coordinator", "Webmaster", "Technical Director", "Treasurer"]
   for position in positions
-    for admin, i in admins
+    for admin in admins
       if admin and admin.position is position
         ordered.push admin
-        admins.splice(i, i+1)
-  for admin in admins
-    if admin
-      ordered.push admin
   $scope.admins = ordered
 ])
