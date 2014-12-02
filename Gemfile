@@ -45,6 +45,7 @@ gem 'newrelic_rpm'
 gem 'omniauth-google-oauth2'
 
 group :development, :test do
+  gem "figaro"
   gem 'better_errors', '~> 1.1'
   gem 'binding_of_caller'
   gem 'rspec-rails'

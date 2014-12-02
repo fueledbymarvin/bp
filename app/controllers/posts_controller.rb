@@ -32,7 +32,7 @@ private
     if current_user && current_user.admin?
       params.require(:post).permit!
     else
-      params.require(:post).permit(:content, :title, :video, :image)
+      params.require(:post).permit(:content, :title, :video, :image, :user_id)
     end
   end
 
